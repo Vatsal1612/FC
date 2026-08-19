@@ -3,21 +3,28 @@
     int planId = ViewBag.PlanId ?? 1;
 }
 
-<div class="screen-container addons-page" data-plan-id="@planId">
-    <div class="addons-header">
-        <div class="addons-title-row">
-            <a href="/Subscription" class="btn-back-circle"><i class="fa-solid fa-arrow-left"></i></a>
-            <h1 class="header-title m-0">Add-Ons</h1>
-        </div>
+<div class="addons-header">
+    <div class="addons-title-row">
+        <a href="/Subscription" class="btn-back-circle"><i class="fa-solid fa-arrow-left"></i></a>
+        <h1 class="header-title m-0">Add-Ons</h1>
         <div class="global-toggle-wrapper addons-toggle mb-0">
-            <div class="billing-toggle-container">
-                <button type="button" class="btn-toggle-cycle active" id="addons-toggle-monthly" onclick="switchAddonsCycle('Monthly')">Monthly</button>
-                <button type="button" class="btn-toggle-cycle" id="addons-toggle-yearly" onclick="switchAddonsCycle('Yearly')">Yearly</button>
+            <div class="billing-toggle-container billing-radio-switch" id="addons-cycle-switch" role="radiogroup" aria-label="Add-ons billing cycle">
+                <label class="billing-option active" id="addons-toggle-monthly" onclick="switchAddonsCycle('Monthly')">
+                    <input type="radio" name="addons-billing-cycle" value="Monthly" checked onchange="switchAddonsCycle('Monthly')" />
+                    <span>Monthly</span>
+                </label>
+                <span class="billing-switch-track" role="switch" tabindex="0" aria-label="Toggle add-ons billing cycle" onclick="switchAddonsCycle(screen2Cycle === 'Monthly' ? 'Yearly' : 'Monthly')" onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); this.click(); }"><span class="billing-switch-thumb"></span></span>
+                <label class="billing-option" id="addons-toggle-yearly" onclick="switchAddonsCycle('Yearly')">
+                    <input type="radio" name="addons-billing-cycle" value="Yearly" onchange="switchAddonsCycle('Yearly')" />
+                    <span>Yearly</span>
+                </label>
             </div>
             <span class="badge-save">Save 40%</span>
         </div>
     </div>
+</div>
 
+<div class="screen-container addons-page" data-plan-id="@planId">
     <div class="addons-layout">
         <div class="addons-grid-wrap">
             <div class="addons-grid" id="addons-grid"></div>

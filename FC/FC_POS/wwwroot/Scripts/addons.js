@@ -156,15 +156,18 @@ $(document).ready(function () {
 function switchAddonsCycle(cycle) {
     if (isGrowth) return;
     screen2Cycle = cycle;
-    $('.btn-toggle-cycle').removeClass('active');
+    $('.billing-option').removeClass('active');
+    $('#addons-cycle-switch').toggleClass('yearly-selected', cycle === 'Yearly');
     if (cycle === 'Monthly') {
         $('#addons-toggle-monthly').addClass('active');
+        $('#addons-toggle-monthly input').prop('checked', true);
         Object.keys(addedAddonsMap).forEach(function (id) {
             var item = catalog().find(function (a) { return a.id === id; });
             if (item && item.yearlyOnly) delete addedAddonsMap[id];
         });
     } else {
         $('#addons-toggle-yearly').addClass('active');
+        $('#addons-toggle-yearly input').prop('checked', true);
     }
     renderAddonsGrid();
     updateLiveSelectionPanel();
@@ -178,6 +181,7 @@ function renderAddonsGrid() {
     visibleAddons().forEach(function (addon) {
         if (!addon) return;
         var addonQuantity = addedAddonsMap[addon.id] ? addedAddonsMap[addon.id].quantity : 0;
+        var addonSelected = addedAddonsMap[addon.id] !== undefined;
         var yearlyLocked = isMonthly && addon.yearlyOnly && !isGrowth;
         var extra = '';
 
@@ -226,7 +230,7 @@ function renderAddonsGrid() {
 
         var title = titleForAddon(addon);
         grid.append(
-            '<div class="addon-card-tile">' +
+            '<div class="addon-card-tile' + (addonSelected ? ' selected' : '') + '">' +
                 '<img src="' + addon.img + '" class="addon-mock-img" alt="' + title + '" />' +
                 '<div class="addon-tile-body">' +
                     '<h5 class="addon-tile-title">' + title + '</h5>' +

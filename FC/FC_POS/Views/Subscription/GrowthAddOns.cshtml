@@ -3,21 +3,28 @@
     int planId = ViewBag.PlanId ?? 2;
 }
 
-<div class="screen-container addons-page" data-plan-id="@planId" data-growth="true">
-    <div class="addons-header">
-        <div class="addons-title-row">
-            <a href="/Subscription" class="btn-back-circle"><i class="fa-solid fa-arrow-left"></i></a>
-            <h1 class="header-title m-0">Add-Ons</h1>
-        </div>
+<div class="addons-header">
+    <div class="addons-title-row">
+        <a href="/Subscription" class="btn-back-circle"><i class="fa-solid fa-arrow-left"></i></a>
+        <h1 class="header-title m-0">Add-Ons</h1>
         <div class="global-toggle-wrapper addons-toggle mb-0">
-            <div class="billing-toggle-container">
-                <button type="button" class="btn-toggle-cycle" id="addons-toggle-monthly" disabled>Monthly</button>
-                <button type="button" class="btn-toggle-cycle active" id="addons-toggle-yearly">Yearly</button>
+            <div class="billing-toggle-container billing-radio-switch yearly-selected" id="addons-cycle-switch" role="radiogroup" aria-label="Add-ons billing cycle">
+                <label class="billing-option" id="addons-toggle-monthly">
+                    <input type="radio" name="addons-billing-cycle" value="Monthly" disabled />
+                    <span>Monthly</span>
+                </label>
+                <span class="billing-switch-track" role="switch" aria-label="Toggle add-ons billing cycle"><span class="billing-switch-thumb"></span></span>
+                <label class="billing-option active" id="addons-toggle-yearly">
+                    <input type="radio" name="addons-billing-cycle" value="Yearly" checked />
+                    <span>Yearly</span>
+                </label>
             </div>
             <span class="badge-save">Save 40%</span>
         </div>
     </div>
+</div>
 
+<div class="screen-container addons-page" data-plan-id="@planId" data-growth="true">
     <div class="addons-layout">
         <div class="addons-grid-wrap">
             <div class="addons-grid" id="addons-grid"></div>

@@ -3,8 +3,8 @@
 .addons-header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 16px;
+    justify-content: flex-start;
+    gap: 12px;
     flex-wrap: wrap;
     margin-bottom: 22px;
 }
@@ -12,25 +12,30 @@
 .addons-title-row {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
 }
 
 .btn-back-circle {
-    width: 36px;
-    height: 36px;
-    border: 1px solid #e5e7eb;
-    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    border: none;
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #374151;
+    color: #111827;
     text-decoration: none;
-    background: #fff;
+    background: #e5e7eb;
 }
+
+.btn-back-circle i { font-size: 13px; }
 
 .btn-back-circle:hover { background: #f3f4f6; color: #111; }
 
-.addons-toggle { margin: 0 !important; }
+.addons-toggle {
+    margin: 0 !important;
+    justify-content: flex-start;
+}
 
 .addons-layout {
     display: grid;
@@ -54,6 +59,11 @@
     flex-direction: column;
     box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
     min-height: 100%;
+}
+
+.addon-card-tile.selected {
+    border-color: var(--fc-teal);
+    box-shadow: 0 0 0 3px rgba(0, 163, 156, 0.14), 0 6px 18px rgba(0, 163, 156, 0.16);
 }
 
 .addon-mock-img {
