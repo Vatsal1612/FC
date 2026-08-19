@@ -1,0 +1,105 @@
+@{
+    ViewData["Title"] = "My Plan - Upgrade Your Restaurant Growth";
+}
+
+<div class="screen-container">
+    <div class="page-header">
+        <h1 class="header-title">Upgrade Your Restaurant Growth</h1>
+        <p class="header-subtitle">Everything you need to run, manage, and grow your restaurant in one place.</p>
+    </div>
+
+    <div class="global-toggle-wrapper">
+        <div class="billing-toggle-container">
+            <button type="button" class="btn-toggle-cycle active" id="global-toggle-monthly" onclick="switchGlobalCycle('Monthly')">Monthly</button>
+            <button type="button" class="btn-toggle-cycle" id="global-toggle-yearly" onclick="switchGlobalCycle('Yearly')">Yearly</button>
+        </div>
+        <span class="badge-save">Save 40%</span>
+    </div>
+
+    <div class="plans-row">
+        <div class="pricing-card pos-card">
+            <div class="card-badge-recommended">Most Recommended</div>
+            <h3 class="card-plan-title">POS (Point of Sale) Plan</h3>
+            <div class="internal-toggle-box">
+                <button type="button" class="btn-internal-toggle active" id="pos-tier-lite" onclick="selectPosTier('Lite')">Lite Plan</button>
+                <button type="button" class="btn-internal-toggle" id="pos-tier-premium" onclick="selectPosTier('Premium')">Premium Plan</button>
+            </div>
+            <p class="card-plan-desc" id="pos-desc">Everything a single-outlet restaurant needs to start billing today.</p>
+            <div class="price-display-area">
+                <span class="price-amount" id="pos-price-val">$10</span>
+                <span class="price-period" id="pos-period-val"> / Month</span>
+            </div>
+            <button type="button" class="btn-teal-cta" onclick="selectAndNavigatePlan('POS')">Start 14 Day Free Trial</button>
+            <ul class="feature-checklist" id="pos-feature-list"></ul>
+            <a href="#" class="btn-learn-more">Learn More</a>
+        </div>
+
+        <div class="pricing-card growth-card">
+            <div class="growth-top-banner">Growth Plan — Save 52%</div>
+            <div class="growth-card-inner">
+                <div class="price-display-area" id="growth-price-area">
+                    <div class="growth-price-row">
+                        <span class="price-struck">$1,899</span>
+                        <span class="growth-price">$600 / Year</span>
+                    </div>
+                </div>
+                <p class="growth-subtitle">All Features in One Plan</p>
+                <div id="growth-cta-box">
+                    <button type="button" class="btn-growth-disabled" disabled>Start 14 Day Free Trial</button>
+                    <div class="growth-yearly-note">Growth Plan Available on Yearly Plan</div>
+                </div>
+                <div class="bundled-values-wrapper">
+                    <div class="bundle-row"><span>Online Ordering Plan</span><span class="badge-value">Value: $300</span></div>
+                    <div class="bundle-row"><span>POS Premium Plan</span><span class="badge-value">Value: $300</span></div>
+                    <div class="bundle-row"><span>Happy Hour</span><span class="badge-value">Value: $250</span></div>
+                    <div class="bundle-row"><span>Bio Link Page</span><span class="badge-value">Value: $49</span></div>
+                    <div class="bundle-row"><span>WhatsApp Automation</span><span class="badge-value">Value: $300</span></div>
+                    <div class="bundle-row"><span>KDS</span><span class="badge-value">Value: $150</span></div>
+                    <div class="bundle-row"><span>Additional Menu</span><span class="badge-value">Value: $100</span></div>
+                    <div class="bundle-row"><span>Snap Dish</span><span class="badge-value">Value: $100</span></div>
+                    <div class="bundle-row"><span>Setup and Team Training</span><span class="badge-value">Value: $350</span></div>
+                </div>
+                <div class="growth-banners">
+                    <div class="banner-guarantee">250 Orders Guaranteed in 90 Days</div>
+                    <div class="banner-total-value">TOTAL VALUE: $1,899</div>
+                    <div class="banner-savings">You save with Growth Plan — $1,299</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="pricing-card ordering-card">
+            <h3 class="card-plan-title">Online Ordering Plan</h3>
+            <div class="internal-toggle-box">
+                <button type="button" class="btn-internal-toggle active" id="ordering-tier-fix" onclick="selectOrderingTier('Fix')">Fix Plan</button>
+                <button type="button" class="btn-internal-toggle" id="ordering-tier-commission" onclick="selectOrderingTier('Commission')">Commission Plan</button>
+            </div>
+            <p class="card-plan-desc" id="ordering-desc">Predictable cost, unlimited orders.</p>
+            <div class="price-display-area">
+                <span class="price-amount" id="ordering-price-val">$30</span>
+                <span class="price-period" id="ordering-period-val"> / Month</span>
+                <div class="commission-note" id="ordering-commission-note" style="display:none;">1.8% Order Commission | $1 Platform Fee</div>
+            </div>
+            <button type="button" class="btn-teal-cta" onclick="selectAndNavigatePlan('Ordering')">Start 14 Day Free Trial</button>
+            <ul class="feature-checklist">
+                <li><i class="fa-solid fa-circle-check check-icon"></i> Takeaway / Dine-in / Delivery Ordering</li>
+                <li><i class="fa-solid fa-circle-check check-icon"></i> Razorpay payment gateway</li>
+                <li><i class="fa-solid fa-circle-check check-icon"></i> Online Order Management</li>
+                <li><i class="fa-solid fa-circle-check check-icon"></i> $2000 Free Sales Credit</li>
+                <li><i class="fa-solid fa-circle-check check-icon"></i> Menu customization</li>
+                <li><i class="fa-solid fa-circle-check check-icon"></i> Tax Management</li>
+                <li><i class="fa-solid fa-circle-check check-icon"></i> Promo Code / Coupon</li>
+                <li><i class="fa-solid fa-circle-check check-icon"></i> Multiple Language</li>
+                <li><i class="fa-solid fa-circle-check check-icon"></i> Delivery Integration</li>
+                <li><i class="fa-solid fa-circle-check check-icon"></i> Custom Domain</li>
+                <li><i class="fa-solid fa-circle-check check-icon"></i> Google Analytics</li>
+                <li><i class="fa-solid fa-circle-check check-icon"></i> Coaching Session</li>
+                <li><i class="fa-solid fa-circle-check check-icon"></i> SEO Optimization</li>
+            </ul>
+            <a href="#" class="btn-learn-more">Learn More</a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/subscription.js" asp-append-version="true"></script>
+}

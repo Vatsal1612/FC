@@ -1,0 +1,37 @@
+@media (max-width: 1200px) {
+    .plans-row { grid-template-columns: 1fr 1fr; }
+    .growth-card { grid-column: span 2; max-width: 520px; margin: 0 auto; }
+    .addons-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 992px) {
+    .icon-rail { width: 56px; }
+    .admin-sidebar { left: 56px; width: 170px; }
+    .main-wrapper { margin-left: 226px; }
+    .addons-layout { grid-template-columns: 1fr; }
+    .selection-summary-panel { position: static; }
+    /* Payment modal's own breakpoints (checkout.css) take over at 768px;
+       collapsing it here too was redundant and fought with those rules. */
+}
+
+@media (max-width: 768px) {
+    .icon-rail, .admin-sidebar { position: static; width: 100%; }
+    .admin-app-body { display: block; }
+    .icon-rail { flex-direction: row; height: auto; bottom: auto; }
+    .icon-rail-nav { flex-direction: row; overflow-x: auto; }
+    .admin-sidebar { border-right: none; border-bottom: 1px solid var(--fc-border); }
+    .main-wrapper { margin-left: 0; }
+    .plans-row { grid-template-columns: 1fr; }
+    .growth-card { grid-column: auto; max-width: none; }
+    .addons-grid { grid-template-columns: 1fr; }
+    .trial-banner-actions { position: static; transform: none; }
+    .trial-teaser-banner { flex-direction: column; }
+    .content-body { padding: 12px; }
+    .screen-container { padding: 16px; }
+}
+
+@media (max-width: 576px) {
+    .header-title { font-size: 22px; }
+    .topbar-controls .d-flex { flex-wrap: wrap; }
+    .btn-header-outline, .btn-header-solid { font-size: 12px; padding: 6px 10px; }
+}

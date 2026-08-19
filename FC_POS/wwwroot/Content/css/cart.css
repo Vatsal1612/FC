@@ -1,0 +1,32 @@
+/* ==========================================================================
+   Module 4 CSS: Cart Page Styling (cart.css)
+   ========================================================================== */
+
+.cart-table th {
+    background-color: #f8fafc;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #475569;
+    padding: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.cart-table td {
+    padding: 1.1rem 1rem;
+    vertical-align: middle;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.cart-table tr:hover td {
+    background-color: #f8fafc;
+}
+
+.empty-cart-box {
+    background: white;
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg);
+    padding: 3rem 2rem;
+    box-shadow: var(--card-shadow);
+}

@@ -1,0 +1,29 @@
+@{
+    ViewData["Title"] = "Your Subscription Cart";
+    int cartId = ViewBag.CartId;
+}
+
+<div class="container py-4">
+    <div class="d-flex align-items-center justify-content-between mb-4 flex-wrap gap-3">
+        <div>
+            <a href="javascript:history.back()" class="btn btn-outline-secondary btn-sm mb-2"><i class="fa-solid fa-arrow-left me-1"></i> Continue Browsing</a>
+            <h2 class="fw-bold m-0"><i class="fa-solid fa-basket-shopping me-2 text-primary"></i> Review Your Subscription Cart</h2>
+        </div>
+    </div>
+
+    <div class="row g-4" id="cart-content-wrapper">
+        <!-- Skeleton Loader -->
+        <div class="col-12 text-center py-5" id="cart-loading">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading cart...</span>
+            </div>
+            <p class="text-muted mt-2">Loading your cart items from database...</p>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" id="cart-id-input" value="@cartId" />
+
+@section Scripts {
+    <script src="~/Scripts/cart.js" asp-append-version="true"></script>
+}

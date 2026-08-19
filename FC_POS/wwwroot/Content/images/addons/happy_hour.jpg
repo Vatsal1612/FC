@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400">
+  <defs>
+    <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ec4899;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#grad5)"/>
+  <path d="M260 110 L340 110 L300 170 L300 210 L320 210 M280 210 L320 210" fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round"/>
+  <text x="300" y="270" font-family="'Plus Jakarta Sans', sans-serif" font-size="28" font-weight="bold" fill="#ffffff" text-anchor="middle">Happy Hour</text>
+  <text x="300" y="305" font-family="'Plus Jakarta Sans', sans-serif" font-size="16" fill="#fce7f3" text-anchor="middle">Time-Based Discount Scheduler</text>
+</svg>

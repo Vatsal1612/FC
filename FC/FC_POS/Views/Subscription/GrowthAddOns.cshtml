@@ -1,0 +1,62 @@
+@{
+    ViewData["Title"] = "Add-Ons - Growth Plan";
+    int planId = ViewBag.PlanId ?? 2;
+}
+
+<div class="screen-container addons-page" data-plan-id="@planId" data-growth="true">
+    <div class="addons-header">
+        <div class="addons-title-row">
+            <a href="/Subscription" class="btn-back-circle"><i class="fa-solid fa-arrow-left"></i></a>
+            <h1 class="header-title m-0">Add-Ons</h1>
+        </div>
+        <div class="global-toggle-wrapper addons-toggle mb-0">
+            <div class="billing-toggle-container">
+                <button type="button" class="btn-toggle-cycle" id="addons-toggle-monthly" disabled>Monthly</button>
+                <button type="button" class="btn-toggle-cycle active" id="addons-toggle-yearly">Yearly</button>
+            </div>
+            <span class="badge-save">Save 40%</span>
+        </div>
+    </div>
+
+    <div class="addons-layout">
+        <div class="addons-grid-wrap">
+            <div class="addons-grid" id="addons-grid"></div>
+        </div>
+        <aside class="selection-summary-panel" id="selection-panel">
+            <div class="selection-header">Your plan - Business Plan</div>
+            <div class="selection-body">
+                <div class="cart-line-item base-plan-line">
+                    <div>
+                        <div class="selection-item-name" id="selection-base-plan-title">Growth Plan</div>
+                        <div class="selection-item-sub" id="selection-base-plan-sub"></div>
+                    </div>
+                    <div class="selection-item-price" id="selection-base-plan-price">$600 / Year</div>
+                </div>
+                <div id="selection-addons-list"></div>
+                <div id="selection-total-value" class="selection-total-value">Total Value: $1,427</div>
+                <div class="selection-totals-box">
+                    <div class="selection-due-row">
+                        <span>Due today (14 Days Free)</span>
+                        <span>$0.00</span>
+                    </div>
+                    <div class="selection-next-row">
+                        <span>Next Billing: <span id="selection-next-billing-date">24 Jul 2026</span></span>
+                        <span id="selection-next-billing-total">$600</span>
+                    </div>
+                </div>
+                <div class="selection-assurances-box">
+                    <div class="assurance-line"><i class="fa-solid fa-circle-check"></i> Free 14 Days trial, cancel any time</div>
+                    <div class="assurance-line"><i class="fa-solid fa-circle-check"></i> Your subscription starts on <span id="cart-start-date">Aug 9, 2026</span>, unless you cancel during the trial.</div>
+                </div>
+                <small class="api-status" id="addons-api-status">Loading add-ons...</small>
+                <button type="button" class="btn-teal-cta" onclick="openPaymentModal(600)">Continue to Checkout</button>
+            </div>
+        </aside>
+    </div>
+</div>
+
+<input type="hidden" id="screen2-plan-id" value="@planId" />
+
+@section Scripts {
+    <script src="~/Scripts/addons.js" asp-append-version="true"></script>
+}

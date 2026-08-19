@@ -1,50 +1,240 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - FC_POS</title>
-    <script type="importmap"></script>
+    <title>@ViewData["Title"] - Maharaja Food Admin Panel</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/FC_POS.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Content/css/subscription.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Content/css/addons.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Content/css/cart.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Content/css/checkout.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Content/css/responsive.css" asp-append-version="true" />
 </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">FC_POS</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
+<body class="admin-app-body">
+
+    <div class="trial-teaser-banner" id="trial-banner">
+        <div class="trial-banner-copy">
+            <strong>Unlock All Premium Features with a FREE 14-Day Trial</strong>
+            <span>No payment today - Cancel anytime before trial ends</span>
+        </div>
+        <div class="trial-banner-actions">
+            <a href="/Subscription" class="btn-start-trial">Start Trial &rarr;</a>
+            <button type="button" class="btn-close-banner" onclick="document.body.classList.add('banner-hidden'); document.getElementById('trial-banner').style.display='none'" aria-label="Dismiss">&times;</button>
+        </div>
+    </div>
+
+    <!-- Icon rail -->
+    <aside class="icon-rail" aria-label="Primary navigation">
+        <button type="button" class="icon-rail-hamburger" aria-label="Menu">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <nav class="icon-rail-nav">
+            <a href="#" class="icon-rail-item" title="Setup"><i class="fa-solid fa-gear"></i><span>Setup</span></a>
+            <a href="#" class="icon-rail-item" title="Menu"><i class="fa-solid fa-utensils"></i><span>Menu</span></a>
+            <a href="#" class="icon-rail-item" title="Marketing"><i class="fa-solid fa-bullhorn"></i><span>Marketing</span></a>
+            <a href="#" class="icon-rail-item" title="Report"><i class="fa-solid fa-chart-simple"></i><span>Report</span></a>
+            <a href="/Subscription" class="icon-rail-item active" title="Plan"><i class="fa-solid fa-clipboard-list"></i><span>Plan</span></a>
+            <a href="#" class="icon-rail-item" title="Support"><i class="fa-solid fa-headset"></i><span>Support</span></a>
+        </nav>
+    </aside>
+
+    <!-- Secondary admin sidebar -->
+    <aside class="admin-sidebar">
+        <div class="admin-sidebar-header">ADMIN</div>
+        <div class="restaurant-selector">
+            <div class="restaurant-icon"><i class="fa-solid fa-store"></i></div>
+            <span class="restaurant-name">Maharaja Food</span>
+        </div>
+        <nav class="admin-subnav">
+            <a href="/Subscription" class="subnav-link active"><i class="fa-regular fa-user"></i> My Plan</a>
+            <a href="/Subscription/Cart" class="subnav-link"><i class="fa-regular fa-credit-card"></i> Billing</a>
+        </nav>
+    </aside>
+
+    <div class="main-wrapper">
+        <header class="topbar-wrapper">
+            <div class="topbar-controls">
+                <div class="ms-auto d-flex align-items-center gap-2">
+                    <button type="button" class="btn-header-outline">Create Support Ticket</button>
+                    <div class="dropdown">
+                        <button class="btn-header-outline dropdown-toggle" type="button" data-bs-toggle="dropdown">View</button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#">Dashboard View</a></li>
+                            <li><a class="dropdown-item" href="#">POS View</a></li>
+                        </ul>
+                    </div>
+                    <button type="button" class="btn-header-solid">My Profile</button>
                 </div>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+        </header>
+
+        <main role="main" class="content-body">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - FC_POS - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <!-- Shared Razorpay-style Payment Modal -->
+    <div class="modal fade" id="paymentModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered payment-modal-dialog">
+            <div class="modal-content payment-modal-content">
+                <div class="rzp-checkout">
+                    <aside class="rzp-left">
+                        <div class="rzp-merchant">
+                            <span class="rzp-merchant-logo">FC</span>
+                            <span class="rzp-merchant-name">FoodChow</span>
+                        </div>
+                        <div class="rzp-amount-card">
+                            <div class="rzp-amount" id="modal-summary-total">$138.00</div>
+                        </div>
+                        <button type="button" class="rzp-left-row">
+                            <span class="rzp-left-ico user"><i class="fa-regular fa-user"></i></span>
+                            <span class="rzp-left-copy">
+                                <small>Using as</small>
+                                <strong>+91 70167 15742</strong>
+                            </span>
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                        <button type="button" class="rzp-left-row">
+                            <span class="rzp-offer-stack">
+                                <span class="rzp-mini icici">ICICI</span>
+                                <span class="rzp-mini upi">UPI</span>
+                            </span>
+                            <span class="rzp-left-copy">
+                                <strong>Offers on ICICI, UPI and...</strong>
+                            </span>
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                        <div class="rzp-illustration">
+                            <svg viewBox="0 0 240 170" width="210" height="140" aria-hidden="true">
+                                <defs>
+                                    <linearGradient id="bag1" x1="0" x2="0" y1="0" y2="1">
+                                        <stop offset="0%" stop-color="#ffffff"/>
+                                        <stop offset="100%" stop-color="#d7e8ff"/>
+                                    </linearGradient>
+                                </defs>
+                                <ellipse cx="120" cy="158" rx="62" ry="8" fill="rgba(0,30,80,0.18)"/>
+                                <g transform="translate(18,36)">
+                                    <path d="M34 20c0-16 11-28 26-28s26 12 26 28" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round"/>
+                                    <rect x="14" y="18" width="80" height="88" rx="10" fill="url(#bag1)"/>
+                                    <rect x="14" y="18" width="80" height="20" fill="#7eb6ff"/>
+                                </g>
+                                <g transform="translate(92,18)">
+                                    <path d="M40 28c0-20 14-34 32-34s32 14 32 34" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round"/>
+                                    <rect x="16" y="26" width="100" height="104" rx="12" fill="#f4f8ff"/>
+                                    <rect x="16" y="26" width="100" height="24" fill="#3b82f6"/>
+                                    <circle cx="108" cy="22" r="20" fill="#ffcc33"/>
+                                    <text x="108" y="29" text-anchor="middle" font-size="18" font-weight="800" fill="#1e3a8a">%</text>
+                                </g>
+                            </svg>
+                        </div>
+                        <div class="rzp-secured">
+                            <span>Secured by</span>
+                            <strong class="rzp-wordmark">Razorpay</strong>
+                        </div>
+                    </aside>
+
+                    <section class="rzp-right">
+                        <header class="rzp-right-head">
+                            <h5>Payment Options</h5>
+                            <div class="rzp-head-actions">
+                                <button type="button" class="rzp-icon-btn" aria-label="More">&#8942;</button>
+                                <button type="button" class="rzp-icon-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+                            </div>
+                        </header>
+
+                        <div class="rzp-body">
+                            <div class="rzp-method-row">
+                                <button type="button" class="rzp-method">
+                                    <span class="rzp-logo gpay">G</span>
+                                    <span>GPay</span>
+                                </button>
+                                <button type="button" class="rzp-method">
+                                    <span class="rzp-logo phonepe">Pe</span>
+                                    <span>PhonePe</span>
+                                </button>
+                                <button type="button" class="rzp-method">
+                                    <span class="rzp-logo paytm">paytm</span>
+                                    <span>Paytm</span>
+                                </button>
+                                <button type="button" class="rzp-method">
+                                    <span class="rzp-logo upi">UPI</span>
+                                    <span>UPI</span>
+                                </button>
+                            </div>
+
+                            <div class="rzp-block">
+                                <div class="rzp-block-head">
+                                    <span>Available Offers</span>
+                                    <a href="#" class="rzp-view-all">View all</a>
+                                </div>
+                                <div class="rzp-offer">
+                                    <span class="rzp-offer-check">&#10003;</span>
+                                    <span>Unlimited 1% cashback with Amaz...</span>
+                                </div>
+                            </div>
+
+                            <div class="rzp-block">
+                                <div class="rzp-block-head">
+                                    <span>Cards</span>
+                                    <span class="rzp-offer-link">Unlimited 1% cash...</span>
+                                </div>
+                                <div class="rzp-chip-row">
+                                    <span class="rzp-chip visa">VISA</span>
+                                    <span class="rzp-chip mc">MC</span>
+                                    <span class="rzp-chip rupay">RuPay</span>
+                                    <span class="rzp-chip maestro">Maestro</span>
+                                </div>
+                                <div class="rzp-card-form">
+                                    <div class="rzp-form-title">Add a new card</div>
+                                    <input type="text" class="rzp-input" placeholder="Card Number" id="card-num" maxlength="19" />
+                                    <div class="rzp-input-split">
+                                        <input type="text" class="rzp-input" placeholder="MM / YY" id="card-exp" maxlength="7" />
+                                        <input type="password" class="rzp-input" placeholder="CVV" id="card-cvv" maxlength="4" />
+                                    </div>
+                                    <label class="rzp-rbi">
+                                        <input type="checkbox" id="save-card-rbi" checked />
+                                        <span>Save this card as per RBI guidelines</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="rzp-block">
+                                <div class="rzp-block-head"><span>Netbanking</span></div>
+                                <div class="rzp-chip-row">
+                                    <span class="rzp-chip bank sbi">SBI</span>
+                                    <span class="rzp-chip bank hdfc">HDFC</span>
+                                    <span class="rzp-chip bank icici">ICICI</span>
+                                    <span class="rzp-chip bank axis">AXIS</span>
+                                </div>
+                            </div>
+
+                            <div class="rzp-block">
+                                <div class="rzp-block-head"><span>Wallet</span></div>
+                                <div class="rzp-chip-row">
+                                    <span class="rzp-chip wallet">Mobikwik</span>
+                                    <span class="rzp-chip wallet">Amazon Pay</span>
+                                    <span class="rzp-chip wallet">Freecharge</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="button" class="rzp-continue" id="btn-modal-continue" onclick="confirmModalPayment()">Continue</button>
+                    </section>
+                </div>
+            </div>
         </div>
-    </footer>
+    </div>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/Scripts/api.js" asp-append-version="true"></script>
+    <script src="~/Scripts/checkout.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

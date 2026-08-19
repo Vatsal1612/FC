@@ -1,0 +1,28 @@
+@{
+    ViewData["Title"] = "Payment Failed";
+    int subId = ViewBag.SubscriptionId;
+    string errorMessage = ViewBag.ErrorMessage;
+}
+
+<div class="container py-5 text-center">
+    <div class="card shadow-lg border-0 rounded-4 max-w-600 mx-auto p-5">
+        <div class="failed-icon-wrapper mb-4">
+            <div class="failed-circle shadow-sm">
+                <i class="fa-solid fa-xmark text-white fs-1"></i>
+            </div>
+        </div>
+
+        <h1 class="fw-bold text-danger mb-2">Transaction Could Not Be Processed</h1>
+        <p class="text-secondary fs-5 mb-4">We were unable to activate your subscription.</p>
+
+        <div class="alert alert-danger border-0 p-4 text-start rounded-3 mb-4">
+            <div class="fw-bold mb-1"><i class="fa-solid fa-triangle-exclamation me-2"></i> Reason for Failure:</div>
+            <p class="m-0 text-dark">@errorMessage</p>
+        </div>
+
+        <div class="d-flex gap-3 justify-content-center">
+            <a href="javascript:history.back()" class="btn btn-primary btn-lg px-4"><i class="fa-solid fa-rotate-right me-1"></i> Try Again</a>
+            <a href="/Subscription" class="btn btn-outline-secondary btn-lg px-4"><i class="fa-solid fa-house me-1"></i> Return to Plans</a>
+        </div>
+    </div>
+</div>

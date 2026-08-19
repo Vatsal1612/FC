@@ -1,0 +1,101 @@
+@{
+    ViewData["Title"] = "Checkout - Confirm Subscription";
+    int cartId = ViewBag.CartId;
+    int subscriptionId = ViewBag.SubscriptionId;
+}
+
+<div class="container py-4">
+    <div class="mb-4">
+        <a href="/Subscription/Cart?cartId=@cartId" class="btn btn-outline-secondary btn-sm mb-2"><i class="fa-solid fa-arrow-left me-1"></i> Back to Cart</a>
+        <h2 class="fw-bold m-0"><i class="fa-solid fa-credit-card text-primary me-2"></i> Subscription Checkout</h2>
+        <p class="text-muted m-0">Complete your restaurant details and activate your 14-day free trial.</p>
+    </div>
+
+    <div class="row g-4">
+        <!-- Billing Details Form -->
+        <div class="col-lg-7">
+            <div class="card shadow-sm border-0 rounded-3 mb-4">
+                <div class="card-header bg-white py-3 border-bottom">
+                    <h5 class="fw-bold m-0"><i class="fa-solid fa-store me-2 text-primary"></i> Restaurant Account Details</h5>
+                </div>
+                <div class="card-body p-4">
+                    <form id="checkout-form">
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Restaurant / Business Name</label>
+                            <input type="text" class="form-control" id="restaurantName" value="Demo Bistro" required />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Email Address (For Invoices &amp; Credentials)</label>
+                            <input type="email" class="form-control" id="restaurantEmail" value="demo@bistro.com" required />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Phone Number</label>
+                            <input type="tel" class="form-control" id="restaurantPhone" value="+1 (555) 234-5678" required />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Physical Address</label>
+                            <textarea class="form-control" id="restaurantAddress" rows="2">123 Culinary Boulevard, Suite 400</textarea>
+                        </div>
+                        <div class="alert alert-info border-0 rounded-3 d-flex align-items-center mb-0">
+                            <i class="fa-solid fa-circle-info fs-4 me-3 text-info"></i>
+                            <div>
+                                <strong>14-Day Free Trial Included</strong><br/>
+                                <small class="text-muted">You will not be charged today. Your billing cycle begins after your 14-day trial period ends.</small>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Order Summary Column -->
+        <div class="col-lg-5">
+            <div class="card shadow-sm border-0 rounded-3 sticky-top" style="top: 5rem;">
+                <div class="card-header bg-white py-3 border-bottom">
+                    <h5 class="fw-bold m-0"><i class="fa-solid fa-file-invoice-dollar me-2 text-success"></i> Order Summary</h5>
+                </div>
+                <div class="card-body p-4">
+                    <!-- Dynamic Summary Breakdown -->
+                    <div id="checkout-summary-loader" class="text-center py-4">
+                        <div class="spinner-border text-primary" role="status"></div>
+                        <p class="text-muted mt-2">Calculating order total...</p>
+                    </div>
+
+                    <div id="checkout-summary-details" class="d-none">
+                        <div class="summary-line d-flex justify-content-between mb-2">
+                            <span class="text-muted">Base Subscription Plan:</span>
+                            <span class="fw-semibold" id="summary-base-plan">$0.00</span>
+                        </div>
+                        <div class="summary-line d-flex justify-content-between mb-2">
+                            <span class="text-muted">Plan Option Selection:</span>
+                            <span class="fw-semibold" id="summary-plan-option">$0.00</span>
+                        </div>
+                        <div class="summary-line d-flex justify-content-between mb-3">
+                            <span class="text-muted">Selected Add-ons Total:</span>
+                            <span class="fw-semibold" id="summary-addons-total">$0.00</span>
+                        </div>
+                        <hr />
+                        <div class="summary-line d-flex justify-content-between mb-4 fs-5">
+                            <span class="fw-bold">Total Amount Due:</span>
+                            <span class="fw-extrabold text-primary" id="summary-grand-total">$0.00</span>
+                        </div>
+
+                        <button type="button" class="btn btn-primary btn-lg w-100 py-3 shadow" id="btn-confirm-payment" onclick="processCheckoutPayment()">
+                            <i class="fa-solid fa-lock me-2"></i> Confirm &amp; Start 14-Day Trial
+                        </button>
+                        <p class="text-center text-muted small mt-3">
+                            <i class="fa-solid fa-shield-halved me-1 text-success"></i> Encrypted 256-bit Secure Payment Gateway
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" id="cart-id" value="@cartId" />
+<input type="hidden" id="subscription-id" value="@subscriptionId" />
+
+@section Scripts {
+    <script src="~/Scripts/checkout.js" asp-append-version="true"></script>
+}
