@@ -23,8 +23,7 @@
             <span>No payment today - Cancel anytime before trial ends</span>
         </div>
         <div class="trial-banner-actions">
-            <a href="/Subscription" class="btn-start-trial">Start Trial &rarr;</a>
-            <button type="button" class="btn-close-banner" onclick="document.body.classList.add('banner-hidden'); document.getElementById('trial-banner').style.display='none'" aria-label="Dismiss">&times;</button>
+            <a href="/Subscription" class="btn-start-trial">Start Trial <svg width="15" height="12" viewBox="0 0 16 12" xmlns="http://www.w3.org/2000/svg" style="margin-left: 8px;"><path d="M10 1v4H0v2h10v4l6-5-6-5z" fill="#111"/></svg></a>
         </div>
     </div>
 
@@ -47,7 +46,7 @@
     <aside class="admin-sidebar">
         <div class="admin-sidebar-header">ADMIN</div>
         <div class="restaurant-selector">
-            <div class="restaurant-icon"><i class="fa-solid fa-store"></i></div>
+            <div class="restaurant-icon"><img src="~/Content/images/maharaja_icon.png" alt="Maharaja Food"></div>
             <span class="restaurant-name">Maharaja Food</span>
         </div>
         <nav class="admin-subnav">
@@ -60,9 +59,9 @@
         <header class="topbar-wrapper">
             <div class="topbar-controls">
                 <div class="ms-auto d-flex align-items-center gap-2">
-                    <button type="button" class="btn-header-outline">Create Support Ticket</button>
+                    <button type="button" class="btn-header-solid">Create Support Ticket</button>
                     <div class="dropdown">
-                        <button class="btn-header-outline dropdown-toggle" type="button" data-bs-toggle="dropdown">View</button>
+                        <button class="btn-header-red-outline dropdown-toggle" type="button" data-bs-toggle="dropdown">View</button>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" href="#">Dashboard View</a></li>
                             <li><a class="dropdown-item" href="#">POS View</a></li>
@@ -85,7 +84,7 @@
                 <div class="rzp-checkout">
                     <aside class="rzp-left">
                         <div class="rzp-merchant">
-                            <span class="rzp-merchant-logo">FC</span>
+                            <img src="~/Content/images/foodchow_payment_logo.png" alt="FoodChow Logo" class="rzp-merchant-logo-img">
                             <span class="rzp-merchant-name">FoodChow</span>
                         </div>
                         <div class="rzp-amount-card">
@@ -101,8 +100,8 @@
                         </button>
                         <button type="button" class="rzp-left-row">
                             <span class="rzp-offer-stack">
-                                <span class="rzp-mini icici">ICICI</span>
-                                <span class="rzp-mini upi">UPI</span>
+                                <span class="rzp-chip"><img src="~/Content/images/icici.png" alt="ICICI" /></span>
+                                <!-- <span class="rzp-mini upi">UPI</span> -->
                             </span>
                             <span class="rzp-left-copy">
                                 <strong>Offers on ICICI, UPI and...</strong>
@@ -142,7 +141,7 @@
                         <header class="rzp-right-head">
                             <h5>Payment Options</h5>
                             <div class="rzp-head-actions">
-                                <button type="button" class="rzp-icon-btn" aria-label="More">&#8942;</button>
+                                <button type="button" class="rzp-icon-btn" aria-label="More" style="position: relative; top: -3px;">&#8230;</button>
                                 <button type="button" class="rzp-icon-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
                             </div>
                         </header>
@@ -156,10 +155,10 @@
                                         <span class="rzp-method-nav-badge offers">2 Offers</span>
                                     </div>
                                     <div class="rzp-method-nav-icons">
-                                        <span class="rzp-mini-logo gpay">G</span>
-                                        <span class="rzp-mini-logo phonepe">Pe</span>
-                                        <span class="rzp-mini-logo paytm">P</span>
-                                        <span class="rzp-mini-logo bhim">Bhim</span>
+                                        <span class="rzp-mini-logo"><img src="~/Content/images/gpay.jpg" alt="GPay" /></span>
+                                        <span class="rzp-mini-logo"><img src="~/Content/images/phonepe.jpg"  alt="PhonePe" /></span>
+                                        <span class="rzp-mini-logo"><img src="~/Content/images/pop.jpg" alt="PopUpi" /></span>
+                                        <span class="rzp-mini-logo"><img src="~/Content/images/paytm.png" alt="Paytm" /></span>
                                     </div>
                                 </button>
 
@@ -169,10 +168,10 @@
                                         <span class="rzp-method-nav-badge cash">Unlimited 1% cash...</span>
                                     </div>
                                     <div class="rzp-method-nav-icons">
-                                        <span class="rzp-mini-logo visa">VISA</span>
-                                        <span class="rzp-mini-logo mc">MC</span>
-                                        <span class="rzp-mini-logo rupay">RuPay</span>
-                                        <span class="rzp-mini-logo maestro">Maes</span>
+                                        <span class="rzp-mini-logo"><img src="~/Content/images/visa.png" alt="Visa" /></span>
+                                        <span class="rzp-mini-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" /></span>
+                                        <span class="rzp-mini-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d1/RuPay.svg" alt="RuPay" /></span>
+                                        <span class="rzp-mini-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/Maestro_logo.svg" alt="Maestro" /></span>
                                     </div>
                                 </button>
 
@@ -181,10 +180,10 @@
                                         <span class="rzp-method-nav-label">Netbanking</span>
                                     </div>
                                     <div class="rzp-method-nav-icons">
-                                        <span class="rzp-mini-logo bank sbi">SBI</span>
-                                        <span class="rzp-mini-logo bank hdfc">HDFC</span>
-                                        <span class="rzp-mini-logo bank icici">ICICI</span>
-                                        <span class="rzp-mini-logo bank axis">AXIS</span>
+                                        <span class="rzp-mini-logo"><img src="~/Content/images/bob.png" alt="BOB" /></span>
+                                        <span class="rzp-mini-logo"><img src="~/Content/images/canarabank.png" alt="Canara" /></span>
+                                        <span class="rzp-mini-logo"><img src="~/Content/images/punjab.jpg" alt="PNB" /></span>
+                                        <span class="rzp-mini-logo"><img src="~/Content/images/hdfc.png" alt="HDFC" /></span>
                                     </div>
                                 </button>
 
@@ -193,10 +192,11 @@
                                         <span class="rzp-method-nav-label">Wallet</span>
                                     </div>
                                     <div class="rzp-method-nav-icons">
-                                        <span class="rzp-mini-logo wallet">Paytm</span>
-                                        <span class="rzp-mini-logo wallet">Mobi</span>
-                                        <span class="rzp-mini-logo wallet">Frcg</span>
-                                        <span class="rzp-mini-logo wallet">Amzn</span>
+                                        <span class="rzp-mini-logo"><img src="~/Content/images/amazon_pay.png" alt="Amazon Pay" /></span>
+                                        <span class="rzp-mini-logo"><img src="~/Content/images/mobikwik.png" alt="MobiKwik" /></span>
+                                        <span class="rzp-mini-logo"><img src="~/Content/images/airtel.png" alt="Airtel" /></span>
+                                        <span class="rzp-mini-logo"><img src="~/Content/images/olamoney.png" alt="Ola Money" /></span>
+
                                     </div>
                                 </button>
                             </nav>
@@ -207,39 +207,50 @@
                                     <div class="rzp-block-head"><span>Pay via UPI</span></div>
                                     <div class="rzp-method-row">
                                         <button type="button" class="rzp-method">
-                                            <span class="rzp-logo gpay">G</span>
+                                            <span class="rzp-logo"><img src="~/Content/images/gpay.jpg" alt="GPay" /></span>
                                             <span>GPay</span>
                                         </button>
                                         <button type="button" class="rzp-method">
-                                            <span class="rzp-logo phonepe">Pe</span>
+                                            <span class="rzp-logo"><img src="~/Content/images/phonepe.jpg" alt="PhonePe" /></span>
                                             <span>PhonePe</span>
                                         </button>
                                         <button type="button" class="rzp-method">
-                                            <span class="rzp-logo paytm">paytm</span>
-                                            <span>Paytm</span>
+                                            <span class="rzp-logo"><img src="~/Content/images/amazon_pay.png" alt="Amazon Pay" /></span>
+                                            <span>Amazon Pay</span>
                                         </button>
                                         <button type="button" class="rzp-method">
-                                            <span class="rzp-logo upi">UPI</span>
-                                            <span>Enter UPI ID</span>
+                                            <span class="rzp-logo"><img src="~/Content/images/mobikwik.png" alt="Mobikwik" /></span>
+                                            <span>Mobikwik</span>
                                         </button>
                                     </div>
                                 </div>
 
                                 <div class="rzp-detail-panel active" data-panel="cards">
-                                    <div class="rzp-block-head">
+                                    <div class="rzp-block-head" style="margin-bottom: 8px;">
                                         <span>Available Offers</span>
-                                        <a href="#" class="rzp-view-all">View all</a>
                                     </div>
-                                    <div class="rzp-offer">
-                                        <span class="rzp-offer-check">&#10003;</span>
-                                        <span>Unlimited 1% cashback with Amaz...</span>
+                                    <div class="rzp-offers-row">
+                                        <div class="rzp-offer-pill active">
+                                            <span class="rzp-offer-logo"><img src="~/Content/images/icici.png" alt="ICICI" /></span>
+                                            <span class="rzp-offer-text">Unlimited 1% cashback with Amaz...</span>
+                                            <span class="rzp-offer-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="#16a34a"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></span>
+                                        </div>
+                                        <button type="button" class="rzp-view-all-pill">
+                                            <div class="rzp-view-all-icons">
+                                                <span class="rzp-mini-logo" style="width:16px;height:16px;border:0;background:transparent;margin-right:-8px;z-index:2;"><img src="~/Content/images/hdfc.png" alt="HDFC"></span>
+                                                <span class="rzp-mini-logo" style="width:16px;height:16px;border:0;background:transparent;"><img src="~/Content/images/visa.png" alt="Visa"></span>
+                                            </div>
+                                            <span>View all</span>
+                                        </button>
                                     </div>
 
                                     <div class="rzp-form-title">Add a new card</div>
-                                    <input type="text" class="rzp-input" placeholder="Card Number" id="card-num" maxlength="19" />
-                                    <div class="rzp-input-split">
-                                        <input type="text" class="rzp-input" placeholder="MM / YY" id="card-exp" maxlength="7" />
-                                        <input type="password" class="rzp-input" placeholder="CVV" id="card-cvv" maxlength="4" />
+                                    <div class="rzp-card-inputs">
+                                        <input type="text" class="rzp-input card-num" placeholder="Card Number" id="card-num" maxlength="19" />
+                                        <div class="rzp-input-split">
+                                            <input type="text" class="rzp-input card-exp" placeholder="MM / YY" id="card-exp" maxlength="7" />
+                                            <input type="password" class="rzp-input card-cvv" placeholder="CVV" id="card-cvv" maxlength="4" />
+                                        </div>
                                     </div>
                                     <label class="rzp-rbi">
                                         <input type="checkbox" id="save-card-rbi" checked />
@@ -250,26 +261,26 @@
                                 <div class="rzp-detail-panel" data-panel="netbanking" hidden>
                                     <div class="rzp-block-head"><span>Select your bank</span></div>
                                     <div class="rzp-chip-row">
-                                        <span class="rzp-chip bank sbi">SBI</span>
-                                        <span class="rzp-chip bank hdfc">HDFC</span>
-                                        <span class="rzp-chip bank icici">ICICI</span>
-                                        <span class="rzp-chip bank axis">AXIS</span>
+                                        <span class="rzp-chip"><img src="~/Content/images/bob.png" alt="BOB" /></span>
+                                        <span class="rzp-chip"><img src="~/Content/images/hdfc.png" alt="HDFC" /></span>
+                                        <span class="rzp-chip"><img src="~/Content/images/punjab.jpg"  alt="PNB" /></span>
+                                        <span class="rzp-chip"><img src="~/Content/images/canarabank.png" alt="Canara" /></span>
                                     </div>
                                 </div>
 
                                 <div class="rzp-detail-panel" data-panel="wallet" hidden>
                                     <div class="rzp-block-head"><span>Select a wallet</span></div>
                                     <div class="rzp-chip-row">
-                                        <span class="rzp-chip wallet">Paytm</span>
-                                        <span class="rzp-chip wallet">Mobikwik</span>
-                                        <span class="rzp-chip wallet">Freecharge</span>
-                                        <span class="rzp-chip wallet">Amazon Pay</span>
+                                        <span class="rzp-chip"><img src="~/Content/images/olamoney.png" alt="Ola Money" /></span>
+                                        <span class="rzp-chip"><img src="~/Content/images/mobikwik.png" alt="MobiKwik" /></span>
+                                        <span class="rzp-chip"><img src="~/Content/images/airtel.png" alt="Airtel" /></span>
+                                        <span class="rzp-chip"><img src="~/Content/images/amazon_pay.png" alt="Amazon Pay" /></span>
                                     </div>
                                 </div>
+                                
+                                <button type="button" class="rzp-continue" id="btn-modal-continue" onclick="confirmModalPayment()">Continue</button>
                             </div>
                         </div>
-
-                        <button type="button" class="rzp-continue" id="btn-modal-continue" onclick="confirmModalPayment()">Continue</button>
                     </section>
                 </div>
             </div>

@@ -25,7 +25,7 @@ function catalog() {
         { id: 'kds', name: 'KDS (Kitchen Display System)', desc: 'Kitchen Display System for smooth kitchen ops', img: '/Content/images/addons/kds.png', monthly: 20, yearlyMo: 12.5, yearly: 150, stepper: true, growth: 150 },
         { id: 'table', name: 'Table Reservation', desc: 'Accept reservations and manage tables effortlessly.', img: '/Content/images/addons/table_reservation.png', monthly: 9, yearlyMo: 8.25, yearly: 99, growth: 99 },
         { id: 'happy', name: 'Happy Hour', desc: 'Boost sales with scheduled discounts and time-based offers.', img: '/Content/images/addons/happy_hour.png', monthly: 20.83, yearlyMo: 20.83, yearly: 250, yearlyOnly: true, growth: 250 },
-        { id: 'bio', name: 'Bio Link', desc: 'Share all your restaurant links from one branded page.', img: '/Content/images/addons/bio_link.png', monthly: 4.08, yearlyMo: 4.08, yearly: 49, yearlyOnly: true, growth: 49 },
+        { id: 'bio', name: 'Bio Link', desc: 'Share all your restaurant links from one branded page.', img: '/Content/images/addons/bio_link.png?v=3', monthly: 4.08, yearlyMo: 4.08, yearly: 49, yearlyOnly: true, growth: 49 },
         { id: 'menu', name: 'Additional Menu', desc: 'Create and manage multiple menus for every occasion.', img: '/Content/images/addons/additional_menu.png', monthly: 8.33, yearlyMo: 8.33, yearly: 100, yearlyOnly: true, growth: 100 },
         { id: 'snap', name: 'SnapDish', desc: 'Turn food photos into stunning, menu-ready images instantly.', img: '/Content/images/addons/snapdish.png', monthly: 8.33, yearlyMo: 8.33, yearly: 100, yearlyOnly: true, growth: 100 }
     ];
@@ -222,23 +222,23 @@ function renderAddonsGrid() {
             actionHtml = addonQuantity === 0
                 ? '<button type="button" class="btn-add-tile" onclick="changeAddonQuantity(\'' + addon.id + '\', 1)">+ Add</button>'
                 : '<div class="classic-add-counter" aria-label="Select ' + titleForAddon(addon) + ' quantity">' +
-                  '<button type="button" class="counter-button" onclick="changeAddonQuantity(\'' + addon.id + '\', -1)" aria-label="Decrease quantity">-</button>' +
-                  '<span class="counter-value">' + addonQuantity + '</span>' +
-                  '<button type="button" class="counter-button" onclick="changeAddonQuantity(\'' + addon.id + '\', 1)" aria-label="Increase quantity">+</button>' +
-                  '</div>';
+                '<button type="button" class="counter-button" onclick="changeAddonQuantity(\'' + addon.id + '\', -1)" aria-label="Decrease quantity">-</button>' +
+                '<span class="counter-value">' + addonQuantity + '</span>' +
+                '<button type="button" class="counter-button" onclick="changeAddonQuantity(\'' + addon.id + '\', 1)" aria-label="Increase quantity">+</button>' +
+                '</div>';
         }
 
         var title = titleForAddon(addon);
         grid.append(
             '<div class="addon-card-tile' + (addonSelected ? ' selected' : '') + '">' +
-                '<img src="' + addon.img + '" class="addon-mock-img" alt="' + title + '" />' +
-                '<div class="addon-tile-body">' +
-                    '<h5 class="addon-tile-title">' + title + '</h5>' +
-                    extra +
-                    '<p class="addon-tile-desc">' + addon.desc + '</p>' +
-                    '<div class="addon-tile-price">' + cardPrice(addon) + '</div>' +
-                    actionHtml +
-                '</div>' +
+            '<img src="' + addon.img + '" class="addon-mock-img" alt="' + title + '" />' +
+            '<div class="addon-tile-body">' +
+            '<h5 class="addon-tile-title">' + title + '</h5>' +
+            extra +
+            '<p class="addon-tile-desc">' + addon.desc + '</p>' +
+            '<div class="addon-tile-price">' + cardPrice(addon) + '</div>' +
+            actionHtml +
+            '</div>' +
             '</div>'
         );
     });

@@ -6,12 +6,15 @@
 
 @media (max-width: 992px) {
     .icon-rail { width: 42px; }
-    .admin-sidebar { left: 42px; width: 112px; }
-    .main-wrapper { margin-left: 154px; }
+    .admin-sidebar { left: 42px; width: 68px; overflow: hidden; }
+    .admin-sidebar-header { font-size: 10px; text-align: center; }
+    .restaurant-name { display: none; }
+    .restaurant-selector { width: 44px; justify-content: center; margin: 12px auto; padding: 4px; }
+    .admin-subnav span { display: none; }
+    .subnav-link { justify-content: center; padding: 10px; }
+    .main-wrapper { margin-left: 110px; }
     .addons-layout { grid-template-columns: 1fr; }
     .selection-summary-panel { position: static; }
-    /* Payment modal's own breakpoints (checkout.css) take over at 768px;
-       collapsing it here too was redundant and fought with those rules. */
 }
 
 @media (max-width: 768px) {

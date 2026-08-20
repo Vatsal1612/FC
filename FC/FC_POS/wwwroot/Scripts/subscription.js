@@ -1,4 +1,4 @@
-var globalCycle = 'Yearly';
+var globalCycle = 'Monthly';
 var posTier = 'Premium';
 var orderingTier = 'Fix';
 
@@ -75,7 +75,7 @@ function loadPlansFromApi() {
             if (posPlan) {
             }
             if (growthPlan) {
-                $('.growth-price').text('$' + Number(growthPlan.price).toFixed(0) + ' / ' + growthPlan.billingCycle);
+                $('.growth-price').text('$' + Number(growthPlan.price).toFixed(0));
             }
             if (orderingPlan) {
             }
@@ -174,11 +174,18 @@ function updateScreen1Prices() {
     }
 
     $('#growth-price-area').html(
-        '<div class="growth-price-row"><span class="price-struck">$1,899</span><span class="growth-price">$600 / Year</span></div>'
+        '<div class="growth-price-row"><span class="price-struck">$1,899</span><span class="growth-price">$600</span> <span class="growth-price-period">/ Year</span></div>'
     );
-    $('#growth-cta-box').html(
-        '<button type="button" class="btn-growth-gradient" onclick="selectAndNavigatePlan(\'Growth\')">Start 14 Day Free Trial</button>'
-    );
+    
+    if (globalCycle === 'Monthly') {
+        $('#growth-cta-box').html(
+            '<button type="button" class="btn-growth-disabled" disabled>Start 14 Day Free Trial</button>'
+        );
+    } else {
+        $('#growth-cta-box').html(
+            '<button type="button" class="btn-growth-gradient" onclick="selectAndNavigatePlan(\'Growth\')">Start 14 Day Free Trial</button>'
+        );
+    }
 
     if (orderingTier === 'Fix') {
         $('#ordering-commission-note').hide();
