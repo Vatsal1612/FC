@@ -176,9 +176,16 @@ function updateScreen1Prices() {
     $('#growth-price-area').html(
         '<div class="growth-price-row"><span class="price-struck">$1,899</span><span class="growth-price">$600 / Year</span></div>'
     );
-    $('#growth-cta-box').html(
-        '<button type="button" class="btn-growth-gradient" onclick="selectAndNavigatePlan(\'Growth\')">Start 14 Day Free Trial</button>'
-    );
+    if (globalCycle === 'Monthly') {
+        $('#growth-cta-box').html(
+            '<button type="button" class="btn-growth-disabled" disabled>Start 14 Day Free Trial</button>\n' +
+            '<div class="growth-yearly-note">Growth Plan Available on Yearly Plan</div>'
+        );
+    } else {
+        $('#growth-cta-box').html(
+            '<button type="button" class="btn-growth-gradient" onclick="selectAndNavigatePlan(\'Growth\')">Start 14 Day Free Trial</button>'
+        );
+    }
 
     if (orderingTier === 'Fix') {
         $('#ordering-commission-note').hide();
