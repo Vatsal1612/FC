@@ -19,7 +19,7 @@ function fmtMoney(n) {
 function catalog() {
     var localCatalog = [
         { id: 'oo', name: 'Online Ordering Plan', growthName: 'Online Ordering Fix Plan', desc: 'Predictable cost, unlimited orders.', img: '/Content/images/addons/online_ordering.png', monthly: 30, yearlyMo: 25, yearly: 300, hero: 'oo', growth: 300 },
-        { id: 'pos', name: 'POS (Point of Sale) Plan', growthName: 'POS Premium Plan', desc: 'Manage billing, inventory, and operations from one powerful POS', img: '/Content/images/addons/premium_pos_plan.png', monthlyLite: 10, monthlyPrem: 30, yearlyMoLite: 10, yearlyMoPrem: 25, yearly: 300, hero: 'pos', growth: 300 },
+        { id: 'pos', name: 'POS (Point of Sale) Plan', growthName: 'POS Premium Plan', desc: 'Predictable cost, unlimited orders', img: '/Content/images/addons/premium_pos_plan.png', monthlyLite: 10, monthlyPrem: 30, yearlyMoLite: 10, yearlyMoPrem: 25, yearly: 300, hero: 'pos', growth: 300 },
         { id: 'qr', name: 'Qr Digital Menu', desc: 'Contactless digital menu for tables & takeaway', img: '/Content/images/addons/qr_menu.png', monthly: 29, yearlyMo: 6.58, yearly: 79, growth: 79 },
         { id: 'kds', name: 'KDS (Kitchen Display System)', desc: 'Kitchen Display System for smooth kitchen ops', img: '/Content/images/addons/kds.png', monthly: 20, yearlyMo: 12.5, yearly: 150, growth: 150 },
         { id: 'table', name: 'Table Reservation', desc: 'Accept reservations and manage tables effortlessly.', img: '/Content/images/addons/table_reservation.png', monthly: 9, yearlyMo: 8.25, yearly: 99, growth: 99 },
@@ -36,7 +36,9 @@ function catalog() {
         });
         if (!localAddon) return;
         localAddon.name = apiAddon.addOnName || localAddon.name;
-        localAddon.desc = apiAddon.description || localAddon.desc;
+        if (localAddon.id === 'oo') {
+            localAddon.desc = '';
+        }
         localAddon.img = localAddon.img;
         localAddon.monthly = Number(apiAddon.monthlyPrice || localAddon.monthly);
         localAddon.yearly = Number(apiAddon.yearlyPrice || localAddon.yearly);
@@ -47,12 +49,27 @@ function catalog() {
 }
 
 function loadAddonsFromApi() {
-    $.when(ApiClient.getMonthlyAddOns(), ApiClient.getYearlyAddOns())
-        .done(function (monthlyResult, yearlyResult) {
+    $.when(ApiClient.getMonthlyAddOns(), ApiClient.getYearlyAddOns(), ApiClient.getGrowthPlanFeatures())
+        .done(function (monthlyResult, yearlyResult, growthResult) {
             apiAddons = (monthlyResult[0] || []).concat(yearlyResult[0] || [])
                 .filter(function (addon, index, all) {
                     return all.findIndex(function (item) { return item.addOnId === addon.addOnId; }) === index;
                 });
+
+            var dbGrowthFeatures = growthResult ? (growthResult[0] || growthResult) : [];
+            if (Array.isArray(dbGrowthFeatures) && dbGrowthFeatures.length) {
+                dbGrowthFeatures.forEach(function (f) {
+                    var local = catalog().find(function (a) {
+                        return (a.name || '').toLowerCase() === (f.featureName || '').toLowerCase() ||
+                               (a.growthName || '').toLowerCase() === (f.featureName || '').toLowerCase() ||
+                               (f.featureName || '').toLowerCase().indexOf((a.name || '').toLowerCase()) !== -1;
+                    });
+                    if (local && f.featureValue) {
+                        local.growth = Number(f.featureValue);
+                    }
+                });
+            }
+
             renderAddonsGrid();
             updateLiveSelectionPanel();
             $('#addons-api-status').text(apiAddons.length + ' add-ons loaded from API');
@@ -80,22 +97,65 @@ function visibleAddons() {
     return all.filter(function (a) { return a.id !== 'pos'; });
 }
 
-function cardPrice(addon) {
-    if (isGrowth) return fmtMoney(addon.growth) + ' / Year';
+function cardPriceInfo(addon) {
+    if (isGrowth) {
+        return {
+            main: '<span class="addon-price-bold">' + fmtMoney(addon.growth) + ' /</span> <span class="addon-price-period">Year</span>',
+            sub: ''
+        };
+    }
     if (addon.id === 'oo') {
-        if (tileOrderingTier === 'Commission') return '$99 / One Time';
-        if (screen2Cycle === 'Monthly') return '$30 / Month';
-        return '$25 / Month billed annually';
+        if (tileOrderingTier === 'Commission') {
+            return {
+                main: '<span class="addon-price-bold">$99 /</span> <span class="addon-price-period">One Time</span>',
+                sub: ''
+            };
+        }
+        if (screen2Cycle === 'Monthly') {
+            return {
+                main: '<span class="addon-price-bold">$30 /</span> <span class="addon-price-period">Month</span>',
+                sub: ''
+            };
+        }
+        return {
+            main: '<span class="addon-price-bold">$25 /</span> <span class="addon-price-period">Month</span>',
+            sub: ''
+        };
     }
     if (addon.id === 'pos') {
-        if (screen2Cycle === 'Monthly') return (tilePosTier === 'Premium' ? '$30' : '$10') + ' / Month';
-        return (tilePosTier === 'Premium' ? '$25' : '$10') + ' / Month billed annually';
+        if (screen2Cycle === 'Monthly') {
+            return {
+                main: '<span class="addon-price-bold">' + (tilePosTier === 'Premium' ? '$30' : '$10') + ' /</span> <span class="addon-price-period">Month</span>',
+                sub: ''
+            };
+        }
+        return {
+            main: '<span class="addon-price-bold">' + (tilePosTier === 'Premium' ? '$25' : '$10') + ' /</span> <span class="addon-price-period">Month</span>',
+            sub: ''
+        };
+    }
+    if (screen2Cycle === 'Monthly' && addon.yearlyOnly) {
+        return {
+            main: '<span class="addon-price-bold">' + fmtMoney(addon.yearlyMo) + ' /</span> <span class="addon-price-period">Month billed annually</span>',
+            sub: '<span class="disabled-yearly-note">This Add-Ons Available on Yearly Plan</span>'
+        };
     }
     if (screen2Cycle === 'Monthly' && !addon.yearlyOnly) {
-        var suffix = addon.stepper ? ' / Month Per Terminal' : ' / Month';
-        return fmtMoney(addon.monthly) + suffix;
+        var suffix = addon.stepper ? 'Month Per Terminal' : 'Month';
+        return {
+            main: '<span class="addon-price-bold">' + fmtMoney(addon.monthly) + ' /</span> <span class="addon-price-period">' + suffix + '</span>',
+            sub: ''
+        };
     }
-    return fmtMoney(addon.yearlyMo) + ' / Month billed annually';
+    return {
+        main: '<span class="addon-price-bold">' + fmtMoney(addon.yearlyMo) + ' /</span> <span class="addon-price-period">Month billed annually</span>',
+        sub: ''
+    };
+}
+
+function cardPrice(addon) {
+    var p = cardPriceInfo(addon);
+    return p.main;
 }
 
 function selectionAmount(addon) {
@@ -183,20 +243,10 @@ function renderAddonsGrid() {
         var addonSelected = addedAddonsMap[addon.id] !== undefined;
         var yearlyLocked = isMonthly && addon.yearlyOnly && !isGrowth;
         var extra = '';
-
         if (addon.hero === 'oo' && !isGrowth) {
-            extra += '<div class="internal-toggle-box">' +
-                '<button type="button" class="btn-internal-toggle' + (tileOrderingTier === 'Fix' ? ' active' : '') + '" onclick="selectTileOrdering(\'Fix\')">Fix Plan</button>' +
-                '<button type="button" class="btn-internal-toggle' + (tileOrderingTier === 'Commission' ? ' active' : '') + '" onclick="selectTileOrdering(\'Commission\')">Commission Plan</button>' +
-                '</div>';
-            if (tileOrderingTier === 'Commission') {
-                extra += '<div class="addon-commission">1.8% Order Commission | $1 Platform Fee</div>';
-            }
-        }
-        if (addon.hero === 'pos' && !isGrowth) {
-            extra += '<div class="internal-toggle-box">' +
-                '<button type="button" class="btn-internal-toggle' + (tilePosTier === 'Lite' ? ' active' : '') + '" onclick="selectTilePos(\'Lite\')">Lite Plan</button>' +
-                '<button type="button" class="btn-internal-toggle' + (tilePosTier === 'Premium' ? ' active' : '') + '" onclick="selectTilePos(\'Premium\')">Premium Plan</button>' +
+            extra = '<div class="addon-toggle-box">' +
+                '<button type="button" class="addon-toggle-btn' + (tileOrderingTier === 'Fix' ? ' active' : '') + '" onclick="selectTileOrdering(\'Fix\')">Fix Plan</button>' +
+                '<button type="button" class="addon-toggle-btn' + (tileOrderingTier === 'Commission' ? ' active' : '') + '" onclick="selectTileOrdering(\'Commission\')">Commission Plan</button>' +
                 '</div>';
         }
 
@@ -207,8 +257,7 @@ function renderAddonsGrid() {
                 'onclick="toggleGrowthAddon(\'' + addon.id + '\')">' +
                 (isGrowthIncluded ? 'Included in Growth Plan' : 'Include in Growth Plan') + '</button>';
         } else if (yearlyLocked) {
-            actionHtml = '<button type="button" class="btn-add-tile" disabled>+ Add</button>' +
-                '<div class="disabled-yearly-note">This Add-Ons Available on Yearly Plan</div>';
+            actionHtml = '<button type="button" class="btn-add-tile disabled" disabled>+ Add</button>';
         } else {
             actionHtml = addonQuantity === 0
                 ? '<button type="button" class="btn-add-tile" onclick="changeAddonQuantity(\'' + addon.id + '\', 1)">+ Add</button>'
@@ -220,15 +269,35 @@ function renderAddonsGrid() {
         }
 
         var title = titleForAddon(addon);
+        var displayDesc = addon.desc;
+        if (addon.hero === 'oo' && !isGrowth) {
+            displayDesc = tileOrderingTier === 'Commission' 
+                ? '1.8% Order Commission | $1 Platform Fee' 
+                : 'Predictable cost, unlimited orders';
+        }
+
+        var pInfo = cardPriceInfo(addon);
+
         grid.append(
             '<div class="addon-card-tile' + (addonSelected ? ' selected' : '') + '">' +
-                '<img src="' + addon.img + '" class="addon-mock-img" alt="' + title + '" />' +
+                '<div class="addon-img-wrapper">' +
+                    '<img src="' + addon.img + '" class="addon-mock-img" alt="' + title + '" />' +
+                '</div>' +
                 '<div class="addon-tile-body">' +
-                    '<h5 class="addon-tile-title">' + title + '</h5>' +
-                    extra +
-                    '<p class="addon-tile-desc">' + addon.desc + '</p>' +
-                    '<div class="addon-tile-price">' + cardPrice(addon) + '</div>' +
-                    actionHtml +
+                    '<div class="addon-tile-top">' +
+                        '<h5 class="addon-tile-title">' + title + '</h5>' +
+                        (extra ? '<div class="addon-tile-toggle-slot">' + extra + '</div>' : '') +
+                        '<p class="addon-tile-desc">' + displayDesc + '</p>' +
+                    '</div>' +
+                    '<div class="addon-tile-bottom">' +
+                        '<div class="addon-tile-pricing">' +
+                            '<div class="addon-price-main">' + pInfo.main + '</div>' +
+                            (pInfo.sub ? '<div class="addon-price-sub">' + pInfo.sub + '</div>' : '') +
+                        '</div>' +
+                        '<div class="addon-tile-actions">' +
+                            actionHtml +
+                        '</div>' +
+                    '</div>' +
                 '</div>' +
             '</div>'
         );
@@ -342,6 +411,7 @@ function basePlan() {
 
 function updateLiveSelectionPanel() {
     var base = basePlan();
+    
     $('#selection-base-plan-title').text(base.title);
     $('#selection-base-plan-sub').text(base.sub);
     $('#selection-base-plan-price').text(base.label);
@@ -351,17 +421,19 @@ function updateLiveSelectionPanel() {
     var addonsTotal = 0;
 
     if (isGrowth) {
-        var growthValue = 0;
-        Object.keys(addedAddonsMap).forEach(function (key) {
-            var item = addedAddonsMap[key];
-            growthValue += Number(item.price || 0);
+        var totalGrowthBundledValue = 0;
+        visibleAddons().forEach(function (addon) {
+            if (!addon) return;
+            var val = Number(addon.growth || 0);
+            totalGrowthBundledValue += val;
             list.append(
-                '<div class="selection-line-item"><span class="selection-item-name" style="font-weight:500;color:#6b7280;">' +
-                item.name + '</span><span class="selection-item-price">' +
-                item.label + '</span></div>'
+                '<div class="selection-line-item">' +
+                    '<span class="selection-item-name">' + titleForAddon(addon) + '</span>' +
+                    '<span class="selection-item-price">' + fmtMoney(val) + ' / Year</span>' +
+                '</div>'
             );
         });
-        $('#selection-total-value').toggle(growthValue > 0).text('Total Value: ' + fmtMoney(growthValue));
+        $('#selection-total-value').show().html('<span>Total Value:</span><span class="total-val-amount">' + fmtMoney(totalGrowthBundledValue) + '</span>');
         $('#selection-next-billing-total').text('$600');
         return;
     }

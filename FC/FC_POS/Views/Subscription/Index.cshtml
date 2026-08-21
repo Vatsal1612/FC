@@ -3,8 +3,8 @@
 }
 
 <div class="page-header plan-page-heading">
-    <h1 class="header-title">Upgrade Your Restaurant Growth</h1>
-    <p class="header-subtitle">Everything you need to run, manage, and grow your restaurant in one place.</p>
+    <h1 class="header-title" id="page-header-title">Upgrade Your Restaurant Growth</h1>
+    <p class="header-subtitle" id="page-header-subtitle">Everything you need to run, manage, and grow your restaurant in one place.</p>
 </div>
 
 <div class="screen-container">
@@ -12,27 +12,27 @@
         <div class="billing-toggle-container billing-radio-switch" id="billing-cycle-switch" role="radiogroup" aria-label="Billing cycle">
             <label class="billing-option active" id="global-toggle-monthly" onclick="switchGlobalCycle('Monthly')">
                 <input type="radio" name="billing-cycle" value="Monthly" checked onchange="switchGlobalCycle('Monthly')" />
-                <span>Monthly</span>
+                <span id="label-cycle-monthly">Monthly</span>
             </label>
             <span class="billing-switch-track" role="switch" tabindex="0" aria-label="Toggle billing cycle" onclick="switchGlobalCycle(globalCycle === 'Monthly' ? 'Yearly' : 'Monthly')" onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); this.click(); }"><span class="billing-switch-thumb"></span></span>
             <label class="billing-option" id="global-toggle-yearly" onclick="switchGlobalCycle('Yearly')">
                 <input type="radio" name="billing-cycle" value="Yearly" onchange="switchGlobalCycle('Yearly')" />
-                <span>Yearly</span>
+                <span id="label-cycle-yearly">Yearly</span>
             </label>
         </div>
-        <span class="badge-save">Save 40%</span>
+        <span class="badge-save" id="cycle-discount-badge">Save 40%</span>
     </div>
 
     <div class="plans-row">
+        <!-- 1. POS Plan Card -->
         <div class="pricing-card pos-card">
-
             <div class="card-top-section">
-                <h3 class="card-plan-title">POS (Point of Sale) Plan</h3>
-                <div class="internal-toggle-box">
+                <h3 class="card-plan-title" id="pos-plan-title">POS (Point of Sale) Plan</h3>
+                <div class="internal-toggle-box" id="pos-tier-box">
                     <button type="button" class="btn-internal-toggle" id="pos-tier-lite" onclick="selectPosTier('Lite')">Lite Plan</button>
                     <button type="button" class="btn-internal-toggle active" id="pos-tier-premium" onclick="selectPosTier('Premium')" style="position: relative;">
                         Premium Plan
-                        <div class="card-badge-recommended">Most Recommended</div>
+                        <div class="card-badge-recommended" id="pos-badge-recommended">Most Recommended</div>
                     </button>
                 </div>
                 <p class="card-plan-desc" id="pos-desc">Everything a single-outlet restaurant needs to start billing today.</p>
@@ -41,55 +41,53 @@
                     <span class="price-period" id="pos-period-val"> / Month billed annually</span>
                 </div>
             </div>
-            <button type="button" class="btn-teal-cta" onclick="selectAndNavigatePlan('POS')">Start 14 Day Free Trial</button>
+            <button type="button" class="btn-teal-cta" id="pos-cta-btn" onclick="selectAndNavigatePlan('POS')">Start 14 Day Free Trial</button>
             <ul class="feature-checklist" id="pos-feature-list"></ul>
-            <a href="#" class="btn-learn-more">Learn More</a>
+            <a href="#" class="btn-learn-more" id="pos-learn-more">Learn More</a>
         </div>
 
- <div class="pricing-card growth-card">
+        <!-- 2. Growth Plan Card -->
+        <div class="pricing-card growth-card">
             <div class="growth-top-banner">
-                <span style="font-weight: 800; font-size: 14px;">Growth Plan</span>
-                <span style="font-weight: 700; font-size: 12px;">Save 52%</span>
+                <span id="growth-title" style="font-weight: 800; font-size: 14px;">Growth Plan</span>
+                <span id="growth-badge" style="font-weight: 700; font-size: 12px;">Save 52%</span>
             </div>
             <div class="growth-card-inner">
                 <div class="card-top-section growth-top-section">
                     <div class="price-display-area" id="growth-price-area">
                         <div class="growth-price-row">
-                            <span class="price-struck">$1,899</span>
-                            <span class="growth-price">$600</span> <span class="growth-price-period" style="color: #353535;">/ Year</span>
+                            <span class="price-struck" id="growth-price-struck">$1,899</span>
+                            <span class="growth-price" id="growth-price-val">$600</span>
+                            <span class="growth-price-period" id="growth-price-period">/ Year</span>
                         </div>
                     </div>
                     <div class="growth-features-note">
-                        <p class="growth-subtitle">All Features in One Plan</p>
-                        <div class="growth-yearly-note">Growth Plan Available on Yearly Plan</div>
+                        <p class="growth-subtitle" id="growth-subtitle">All Features in One Plan</p>
+                        <div class="growth-yearly-note" id="growth-yearly-note">Growth Plan Available on Yearly Plan</div>
                     </div>
                 </div>
                 <div id="growth-cta-box">
-                    <button type="button" class="btn-growth-disabled" disabled>Start 14 Day Free Trial</button>
+                    <button type="button" class="btn-growth-disabled" id="growth-cta-btn" disabled>Start 14 Day Free Trial</button>
                 </div>
-                <div class="bundled-values-wrapper">
-                    <div class="bundle-row" data-feature="online ordering"><span>Online Ordering Plan</span><span class="badge-value">Value: $300</span></div>
-                    <div class="bundle-row" data-feature="pos premium"><span>POS Premium Plan</span><span class="badge-value">Value: $300</span></div>
-                    <div class="bundle-row" data-feature="happy hour"><span>Happy Hour</span><span class="badge-value">Value: $250</span></div>
-                    <div class="bundle-row" data-feature="bio link"><span>Bio Link Page</span><span class="badge-value">Value: $49</span></div>
-                    <div class="bundle-row" data-feature="whatsapp automation"><span>WhatsApp Automation</span><span class="badge-value">Value: $300</span></div>
-                    <div class="bundle-row" data-feature="kitchen display system"><span>KDS - Kitchen Display</span><span class="badge-value">Value: $150</span></div>
-                    <div class="bundle-row" data-feature="additional menu"><span>Additional Menu</span><span class="badge-value">Value: $100</span></div>
-                    <div class="bundle-row" data-feature="snapdish"><span>Snap Dish</span><span class="badge-value">Value: $100</span></div>
-                    <div class="bundle-row" data-feature="team training"><span>Setup and Team Training</span><span class="badge-value">Value: $350</span></div>
+                <div class="bundled-values-wrapper" id="growth-bundled-wrapper">
+                    <!-- Populated dynamically via database -->
                 </div>
                 <div class="growth-banners">
-                    <div class="banner-guarantee">250 Orders Guaranteed in 90 Days</div>
-                    <div class="banner-total-value" id="growth-total-value">TOTAL VALUE: $1,899</div>
-                    <div class="banner-savings" id="growth-savings">You save with Growth Plan — $1,299</div>
+                    <div class="banner-guarantee" id="growth-guarantee-banner">250 Orders Guaranteed in in 90 Days</div>
+                    <div class="banner-total-value" id="growth-total-value"><span>TOTAL VALUE:</span><span>$1,899</span></div>
+                    <div class="banner-savings" id="growth-savings">
+                        <div class="savings-title">You save with Growth Plan</div>
+                        <div class="savings-amount">$1,299</div>
+                    </div>
                 </div>
             </div>
         </div>
 
+        <!-- 3. Online Ordering Plan Card -->
         <div class="pricing-card ordering-card">
             <div class="card-top-section">
-                <h3 class="card-plan-title">Online Ordering Plan</h3>
-                <div class="internal-toggle-box">
+                <h3 class="card-plan-title" id="ordering-plan-title">Online Ordering Plan</h3>
+                <div class="internal-toggle-box" id="ordering-tier-box">
                     <button type="button" class="btn-internal-toggle active" id="ordering-tier-fix" onclick="selectOrderingTier('Fix')">Fix Plan</button>
                     <button type="button" class="btn-internal-toggle" id="ordering-tier-commission" onclick="selectOrderingTier('Commission')">Commission Plan</button>
                 </div>
@@ -97,14 +95,13 @@
                 <div class="price-display-area">
                     <span class="price-amount" id="ordering-price-val">$30</span>
                     <span class="price-period" id="ordering-period-val"> / Month</span>
-                    <!-- <div class="commission-note" id="ordering-commission-note" style="display:none;">1.8% Order Commission | $1 Platform Fee</div> -->
                 </div>
             </div>
-            <button type="button" class="btn-teal-cta" onclick="selectAndNavigatePlan('Ordering')">Start 14 Day Free Trial</button>
+            <button type="button" class="btn-teal-cta" id="ordering-cta-btn" onclick="selectAndNavigatePlan('Ordering')">Start 14 Day Free Trial</button>
             <ul class="feature-checklist" id="ordering-feature-list">
-                <!-- Populated dynamically via JS -->
+                <!-- Populated dynamically via database -->
             </ul>
-            <a href="#" class="btn-learn-more">Learn More</a>
+            <a href="#" class="btn-learn-more" id="ordering-learn-more">Learn More</a>
         </div>
     </div>
 </div>
