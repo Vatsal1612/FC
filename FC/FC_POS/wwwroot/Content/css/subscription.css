@@ -19,11 +19,12 @@
     --fc-page: #eef0f4;
     --icon-rail: 72px;
     --admin-sidebar: 271px;
-    --font: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 * {
     box-sizing: border-box;
+    font-family: var(--font);
 }
 
 body.admin-app-body {
@@ -85,7 +86,7 @@ body.admin-app-body {
     gap: 3px;
     text-decoration: none;
     color: #000000;
-    font-family: Figtree, sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 16px;
     font-weight: 600;
     line-height: 100%;
@@ -387,10 +388,10 @@ body.admin-app-body {
 .billing-option {
     cursor: pointer;
     color: #000000;
-    font-family: Unbounded, sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 600;
     font-style: normal;
-    font-size: 16px;
+    font-size: 13px;
     line-height: 100%;
     letter-spacing: 0;
 }
@@ -462,89 +463,103 @@ body.admin-app-body {
 }
 
 .card-top-section {
-    height: 135px;
-    /* Fixed height to push the button down consistently */
+    min-height: 165px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: flex-start;
 }
 
 .growth-card .card-top-section {
-    height: 95px;
-    /* Reduced height to account for the top banner space */
+    min-height: 100px;
 }
 
 .card-badge-recommended {
     position: absolute;
     top: -24px;
-    right: -4px;
+    right: -2px;
     background: linear-gradient(to left, #EE8500, #c99001);
     color: #fff;
-    font-size: 9px;
+    font-family: 'Figtree', sans-serif;
     font-weight: 700;
-    width: 98px;
+    font-style: normal;
+    font-size: 9px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    width: auto;
+    min-width: 95px;
     height: 18px;
+    padding: 0 6px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 4px;
+    border-radius: 3px;
     z-index: 10;
-    padding-top: 1px;
 }
 
 .card-badge-recommended::after {
     content: '';
     position: absolute;
     top: 17px;
-    right: 8px;
-    border-width: 6px 5px 0 5px;
+    right: 6px;
+    border-width: 5px 4px 0 4px;
     border-style: solid;
     border-color: #EE8500 transparent transparent transparent;
 }
 
 .card-plan-title {
-    font-size: 16px;
+    font-family: 'Figtree', sans-serif;
     font-weight: 800;
-    margin: 0 0 10px;
+    font-style: normal;
+    font-size: 15px;
+    line-height: 1.25;
+    letter-spacing: 0%;
+    margin: 0 0 8px;
     color: #000;
 }
 
 .card-plan-desc {
-    font-size: 9px;
+    font-size: 10px;
     color: #111;
     margin: 5px 0 0;
 }
 
 .internal-toggle-box {
-    background: #fff;
-    padding: 2px;
-    border: 1px solid var(--fc-teal);
+    background: #FFFFFF;
+    padding: 3px;
+    border: 0.5px solid #0AA89E;
     border-radius: 6px;
     display: flex;
-    gap: 2px;
-    margin: 10px 0 12px;
+    gap: 3px;
+    height: 40px;
+    width: 100%;
+    margin: 6px 0 10px;
+    align-items: stretch;
 }
 
 .btn-internal-toggle {
     flex: 1 1 50%;
     width: 50%;
     border: none;
-    background: #e6f7f4;
-    color: #4b5563;
-    font-size: 9.5px;
+    background: #E8F8F7;
+    color: #4A5568;
+    font-family: 'Figtree', sans-serif;
+    font-size: 12.5px;
     font-weight: 700;
-    padding: 5px 4px;
+    padding: 0 4px;
     display: flex;
     align-items: center;
     justify-content: center;
-    line-height: 1.2;
-    border-radius: 4px;
+    line-height: 1;
+    border-radius: 5px;
     white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
 .btn-internal-toggle.active {
-    background: var(--fc-teal);
-    color: #fff;
+    background: #0AA89E;
+    border-color: #0AA89E;
+    color: #FFFFFF;
 }
 
 .price-display-area {
@@ -558,9 +573,13 @@ body.admin-app-body {
 }
 
 .price-period {
-    font-size: 13px;
+    font-family: 'Figtree', sans-serif;
+    font-size: 17px;
+    font-weight: 500;
+    font-style: normal;
+    line-height: 100%;
+    letter-spacing: 0%;
     color: #111;
-    font-weight: 600;
 }
 
 .btn-teal-cta {
@@ -606,8 +625,9 @@ body.admin-app-body {
 }
 
 .feature-checklist li {
+    font-family: 'Poppins', sans-serif;
     font-size: 15px;
-    color: #374151;
+    color: #494949;
     padding: 5px 0;
     display: flex;
     align-items: center;
@@ -658,21 +678,25 @@ body.admin-app-body {
 }
 
 .growth-card-inner {
-    padding: 16px 18px 0;
+    padding: 10px 18px 0;
 }
 
 .growth-price-row {
     display: flex;
     align-items: baseline;
-    gap: 7px;
-    margin-top: 34px;
-    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+    margin-bottom: 6px;
+    flex-wrap: nowrap;
 }
 
 .price-struck {
-    color: #7b7b7b;
-    font-size: 32px;
+    color: #5C5C5C;
+    font-family: 'Unbounded', sans-serif;
+
+    font-size: 28px;
     font-weight: 800;
+    line-height: 100%;
     position: relative;
     display: inline-block;
 }
@@ -680,29 +704,30 @@ body.admin-app-body {
 .price-struck::after {
     content: '';
     position: absolute;
-    left: -5%;
-    top: 47%;
-    width: 110%;
-    height: 2px;
-    background-color: #7b7b7b;
-    transform: rotate(-10deg);
+    left: -2%;
+    top: 50%;
+    width: 104%;
+    height: 1.5px;
+    background-color: #5C5C5C;
+    transform: rotate(-6deg);
 }
 
 .growth-price {
-    color: #EE8500;
+    color: #FF7A00;
+    font-family: 'Unbounded', sans-serif;
     font-size: 32px;
     font-weight: 800;
+    line-height: 100%;
 }
 
 .growth-price-period {
-    color: #353535;
-    font-family: 'Unbounded', sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 40px;
+    color: #222222;
+    font-family: 'Figtree', sans-serif;
+    font-weight: 500;
+    font-size: 19px;
+    line-height: 100%;
     letter-spacing: 0;
 }
-
 
 .growth-card .bundled-values-wrapper {
     border-top-color: var(--fc-orange);
@@ -711,13 +736,15 @@ body.admin-app-body {
 }
 
 .growth-features-note {
-    margin: 4px 0 6px;
+    margin: 2px 0 10px;
 }
 
-.growth-features-note .growth-subtitle {
+.growth-features-note .growth-subtitle,
+.growth-subtitle {
     color: #008A00;
+    font-family: 'Unbounded', sans-serif;
     font-weight: 800;
-    font-size: 12.5px;
+    font-size: 12px;
     margin: 0 0 8px;
     text-align: left;
 }
@@ -748,12 +775,16 @@ body.admin-app-body {
     color: #fff;
 }
 
-.growth-features-note .growth-yearly-note {
+.growth-features-note .growth-yearly-note,
+.growth-yearly-note {
     color: #FF0000;
-    font-size: 11px;
+    font-family: 'Figtree', sans-serif;
+    font-size: 13px;
     font-weight: 600;
     text-align: left;
     margin: 0;
+    letter-spacing: 0%;
+    line-height: 40px;
     visibility: hidden;
     /* Hidden by default on Yearly plan */
 }
@@ -768,17 +799,27 @@ body.admin-app-body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 8px;
+    font-family: 'Figtree', sans-serif;
     font-size: 15px;
-    font-weight: 700;
+    font-weight: 600;
     padding: 10px 18px;
     background: var(--fc-orange-soft);
     margin-bottom: 5px;
-    color: #111;
+    color: #000000;
+}
+
+.bundle-row span {
+    font-family: 'Figtree', sans-serif;
+    font-weight: 600;
 }
 
 .badge-value {
-    font-weight: 700;
-    color: #111827;
+    font-family: 'Figtree', sans-serif;
+    font-weight: 600;
+    color: #000000;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .growth-banners {
@@ -808,13 +849,34 @@ body.admin-app-body {
 }
 
 .banner-savings {
-    background: #2e7d32;
-    color: #fff;
+    background: #009E00;
+    color: #FFFFFF;
     text-align: center;
-    font-size: 13px;
+    padding: 12px 10px 14px;
+    margin: 8px -18px -16px;
+    border-radius: 0 0 10px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+}
+
+.banner-savings .savings-title {
+    font-family: 'Figtree', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #FFFFFF;
+    line-height: 1.2;
+}
+
+.banner-savings .savings-amount {
+    font-family: 'Figtree', sans-serif;
+    font-size: 26px;
     font-weight: 800;
-    padding: 10px;
-    border-radius: 4px;
+    color: #FFFFFF;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
 }
 
 .growth-card .growth-card-inner {
@@ -834,17 +896,6 @@ body.admin-app-body {
 /* Compact desktop proportions used by the supplied plan reference. */
 .api-status {
     display: none;
-}
-
-.pricing-card .internal-toggle-box {
-    margin: 6px 0 7px;
-    border-radius: 4px;
-}
-
-.pricing-card .btn-internal-toggle {
-    font-size: 10px;
-    padding: 5px 4px;
-    border-radius: 3px;
 }
 
 .pricing-card .price-display-area {
@@ -943,14 +994,16 @@ body.admin-app-body {
 }
 
 .banner-savings {
-    background: #00ad00;
-    border-radius: 0;
-    font-size: 10px;
-    line-height: 1.25;
-    padding: 9px 5px 10px;
-    margin: 0 -8px;
+    background: #009E00;
+    border-radius: 0 0 8px 8px;
+    padding: 10px 6px 12px;
+    margin: 8px -8px -16px;
 }
 
-.banner-savings::first-line {
-    font-size: 10px;
+.banner-savings .savings-title {
+    font-size: 12px;
+}
+
+.banner-savings .savings-amount {
+    font-size: 20px;
 }

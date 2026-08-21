@@ -38,13 +38,13 @@
 }
 
 .addons-toggle {
-    margin: 0 !important;
+    margin: 0 0 0 20px !important;
     justify-content: flex-start;
 }
 
 .addons-layout {
     display: grid;
-    grid-template-columns: 1fr 300px;
+    grid-template-columns: 1fr 270px;
     gap: 22px;
     align-items: start;
 }
@@ -52,94 +52,222 @@
 .addons-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
+    gap: 10px;
+    align-items: stretch;
 }
 
 .addon-card-tile {
     background: #fff;
     border: 1px solid #e5e7eb;
-    border-radius: 10px;
+    border-radius: 8px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
-    min-height: 100%;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+    height: 100%;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.addon-card-tile:hover {
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
 }
 
 .addon-card-tile.selected {
     border-color: var(--fc-teal);
-    box-shadow: 0 0 0 3px rgba(0, 163, 156, 0.14), 0 6px 18px rgba(0, 163, 156, 0.16);
+    box-shadow: 0 0 0 2px rgba(0, 163, 156, 0.14), 0 4px 12px rgba(0, 163, 156, 0.14);
+}
+
+.addon-img-wrapper {
+    width: 100%;
+    height: 110px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    border-bottom: 1px solid #f3f4f6;
 }
 
 .addon-mock-img {
-    width: 100%;
-    height: 130px;
-    object-fit: cover;
-    background: #f3f4f6;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
 }
 
 .addon-tile-body {
-    padding: 12px 14px 14px;
+    padding: 8px 12px 10px;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     flex: 1;
 }
 
+.addon-tile-top {
+    display: flex;
+    flex-direction: column;
+}
+
 .addon-tile-title {
-    font-size: 15px;
+    font-family: 'Figtree', sans-serif;
+    font-size: 14.5px;
     font-weight: 800;
     margin: 0 0 4px;
-    color: #111827;
+    color: #000000;
+    line-height: 1.2;
+}
+
+.addon-tile-toggle-slot {
+    margin-bottom: 6px;
+    width: 100%;
+}
+
+.addon-toggle-box {
+    display: flex;
+    height: 39px;
+    border: 1px solid #0AA89E;
+    border-radius: 5px;
+    padding: 0;
+    background: #E6F7F5;
+    width: 100%;
+    overflow: hidden;
+}
+
+.addon-toggle-btn {
+    flex: 1 1 50%;
+    height: 100%;
+    border: none;
+    background: transparent;
+    color: #5C5C5C;
+    font-family: 'Figtree', sans-serif;
+    font-size: 11.5px;
+    font-weight: 700;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: -0.2px;
+    padding: 0 4px;
+    white-space: nowrap;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.addon-toggle-btn.active {
+    background: #0AA89E;
+    color: #FFFFFF;
+    border-radius: 5px;
 }
 
 .addon-tile-desc {
     font-size: 11px;
-    color: #6b7280;
-    line-height: 1.4;
-    margin: 0 0 10px;
-    min-height: 34px;
+    color: #4B5563;
+    line-height: 1.3;
+    margin: 0 0 6px;
 }
 
-.addon-tile-price {
-    font-weight: 800;
-    font-size: 14px;
-    color: #111827;
-    margin-bottom: 10px;
+.addon-tile-bottom {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
 }
 
-.addon-commission {
-    font-size: 11px;
-    color: #6b7280;
+.addon-tile-pricing {
     margin-bottom: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.addon-price-main {
+    font-family: 'Figtree', sans-serif;
+    color: #000000;
+    line-height: 100%;
+    letter-spacing: 0%;
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+
+.addon-price-bold {
+    font-family: 'Figtree', sans-serif;
+    font-size: 23px;
+    font-weight: 800;
+    font-style: normal;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #000000;
+}
+
+.addon-price-period {
+    font-family: 'Figtree', sans-serif;
+    font-size: 17px;
+    font-weight: 500;
+    font-style: normal;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #000000;
+}
+
+.addon-price-sub {
+    font-family: 'Figtree', sans-serif;
+    font-size: 11.5px;
+    color: #6B7280;
+    font-weight: 500;
+    margin-top: 2px;
+    line-height: 1.2;
+}
+
+.disabled-yearly-note {
+    color: #FF0000;
+    font-family: 'Figtree', sans-serif;
+    font-size: 11.5px;
+    font-weight: 600;
+    display: block;
+}
+
+.addon-tile-actions {
+    width: 100%;
 }
 
 .btn-add-tile {
     width: 100%;
-    background: #fff;
-    border: 1.5px solid var(--fc-teal);
-    color: var(--fc-teal);
+    height: 36px;
+    background: #FFFFFF;
+    border: 1.5px solid #111827;
+    color: #000000;
+    font-family: 'Figtree', sans-serif;
     font-weight: 700;
-    border-radius: 6px;
-    padding: 4px 10px;
-    font-size: 13px;
-    margin-top: auto;
+    border-radius: 8px;
+    padding: 0 10px;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.15s ease;
 }
 
 .btn-add-tile:hover {
-    border-color: var(--fc-teal);
-    color: var(--fc-teal);
+    background: #F3F4F6;
+    border-color: #000000;
+    color: #000000;
 }
 
 .btn-add-tile.added {
-    background: #fff;
-    border-color: #22c55e;
-    color: #16a34a;
+    background: #16a34a;
+    border-color: #16a34a;
+    color: #FFFFFF;
 }
 
-.btn-add-tile:disabled {
-    background: #f3f4f6;
-    border-color: #d1d5db;
-    color: #9ca3af;
+.btn-add-tile:disabled,
+.btn-add-tile.disabled {
+    background: #FFFFFF !important;
+    border: 1px solid #D1D5DB !important;
+    color: #C4C4C4 !important;
+    cursor: not-allowed;
 }
 
 .classic-add-counter {
@@ -151,7 +279,6 @@
     border: 1px solid var(--fc-teal);
     border-radius: 6px;
     overflow: hidden;
-    margin-top: auto;
 }
 
 .counter-button {
@@ -180,19 +307,29 @@
 
 .btn-include-growth {
     width: 100%;
-    background: #d7f3f1;
+    height: 38px;
+    background: #D2F4EE;
     border: none;
-    color: var(--fc-teal);
+    color: #0F3F3A;
+    font-family: 'Figtree', sans-serif;
     font-weight: 700;
     border-radius: 6px;
-    padding: 8px 10px;
-    font-size: 12px;
-    margin-top: auto;
+    padding: 0 10px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-include-growth:hover {
+    background: #C0ECE5;
 }
 
 .btn-include-growth.included {
     background: #16a34a;
-    color: #fff;
+    color: #FFFFFF;
 }
 
 .disabled-yearly-note {
@@ -209,56 +346,58 @@
     border: 1px solid #d1d5db;
     border-radius: 6px;
     overflow: hidden;
-    margin-top: auto;
-    margin-bottom: 4px;
-    align-self: flex-start;
     height: 28px;
+    margin-bottom: 8px;
 }
 
-.btn-stepper {
+.qty-stepper-btn {
     border: none;
     background: #f3f4f6;
-    width: 32px;
-    height: 100%;
-    font-weight: 800;
+    width: 28px;
+    font-weight: 700;
+    font-size: 14px;
     color: #374151;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0;
-    margin: 0;
+    cursor: pointer;
 }
 
-.input-stepper-val {
-    width: 36px;
-    height: 100%;
-    border: none;
-    text-align: center;
-    font-weight: 800;
+.qty-stepper-val {
+    width: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0;
-    margin: 0;
-    outline: none;
-    line-height: 1;
+    font-weight: 700;
+    font-size: 13px;
+    border-left: 1px solid #d1d5db;
+    border-right: 1px solid #d1d5db;
+    background: #fff;
+}
+
+.addons-layout {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 20px;
+    align-items: start;
 }
 
 .selection-summary-panel {
     background: #fff;
     border: 1px solid #e5e7eb;
     border-radius: 10px;
-    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
+    overflow: hidden;
     position: sticky;
     top: 120px;
 }
 
 .selection-header {
-    font-weight: 500;
+    font-weight: 600;
     font-size: 14px;
-    padding: 14px 16px;
+    padding: 12px 16px;
     color: #111827;
-    border-bottom: 1px solid #9ca3af;
+    border-bottom: 1px solid #e5e7eb;
 }
 
 .selection-body {
@@ -268,59 +407,117 @@
 .selection-line-item {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     gap: 8px;
-    padding: 8px 0;
-    font-size: 13px;
+    padding: 7px 0;
+    font-size: 12.5px;
+    border-bottom: 1px solid #f3f4f6;
 }
 
 .selection-item-name {
+    font-family: 'Figtree', sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    color: #111827;
+}
+
+.base-plan-line .selection-item-name {
+    font-family: 'Figtree', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    color: #111827;
+}
+
+.base-plan-line .selection-item-price {
+    font-family: 'Figtree', sans-serif;
     font-weight: 700;
+    font-size: 15px;
     color: #111827;
 }
 
 .selection-item-sub {
+    font-family: 'Figtree', sans-serif;
     font-size: 11px;
     color: #9ca3af;
     margin-top: 2px;
 }
 
 .selection-item-price {
-    font-weight: 700;
+    font-family: 'Figtree', sans-serif;
+    font-weight: 500;
+    font-size: 13px;
     white-space: nowrap;
+    color: #111827;
 }
 
 .selection-total-value {
-    color: #e53935;
-    font-weight: 800;
-    font-size: 13px;
-    padding: 8px 0 4px;
+    color: #FF0000;
+    font-family: 'Figtree', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    padding: 10px 0 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #E5E7EB;
+    margin-top: 4px;
+}
+
+.selection-total-value .total-val-amount {
+    font-family: 'Figtree', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: #FF0000;
 }
 
 #selection-addons-list {
-    min-height: 150px;
+    min-height: auto;
 }
 
 .selection-totals-box {
-    padding-top: 24px;
+    background: #E8F8F5;
+    border-radius: 6px;
+    padding: 12px 14px;
+    margin-top: 10px;
+    margin-bottom: 12px;
+    font-family: 'Figtree', sans-serif;
 }
 
 .selection-due-row {
     display: flex;
     justify-content: space-between;
-    color: #16a34a;
-    font-weight: 700;
-    font-size: 13px;
-    margin-bottom: 8px;
+    align-items: center;
+    color: #111827;
+    font-family: 'Figtree', sans-serif;
+    font-weight: 500;
+    font-size: 13.5px;
+    padding: 4px 0 10px;
+    border-bottom: 1px solid #D5EDE8;
+    margin-bottom: 10px;
+}
+
+.selection-due-row .free-trial-highlight {
+    color: #008A00;
+    font-weight: 600;
 }
 
 .selection-next-row {
     display: flex;
     justify-content: space-between;
-    font-weight: 800;
-    font-size: 13px;
+    align-items: center;
     color: #111827;
-    margin-bottom: 12px;
+    font-family: 'Figtree', sans-serif;
+    font-weight: 500;
+    font-size: 13.5px;
+    padding: 2px 0 4px;
+    margin-bottom: 0;
+}
+
+.selection-box-price {
+    font-family: 'Figtree', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: #111827;
 }
 
 .selection-assurances-box {

@@ -70,8 +70,19 @@ var ApiClient = (function () {
         getPlanById: function (id) {
             return ajaxRequest('/api/plans/' + id, 'GET');
         },
+        getPlanFeatures: function (planType, tierName) {
+            var params = [];
+            if (planType) params.push('planType=' + encodeURIComponent(planType));
+            if (tierName) params.push('tierName=' + encodeURIComponent(tierName));
+            var url = '/api/plans/features' + (params.length ? '?' + params.join('&') : '');
+            return ajaxRequest(url, 'GET');
+        },
         getGrowthPlanFeatures: function () {
             return ajaxRequest('/api/plans/growth/features', 'GET');
+        },
+        getPageSettings: function (pageName) {
+            var url = '/api/plans/settings' + (pageName ? '?pageName=' + encodeURIComponent(pageName) : '');
+            return ajaxRequest(url, 'GET');
         },
 
         // AddOns API
