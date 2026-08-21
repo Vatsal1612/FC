@@ -10,13 +10,13 @@
 <div class="screen-container">
     <div class="global-toggle-wrapper">
         <div class="billing-toggle-container billing-radio-switch" id="billing-cycle-switch" role="radiogroup" aria-label="Billing cycle">
-            <label class="billing-option" id="global-toggle-monthly" onclick="switchGlobalCycle('Monthly')">
-                <input type="radio" name="billing-cycle" value="Monthly" onchange="switchGlobalCycle('Monthly')" />
+            <label class="billing-option active" id="global-toggle-monthly" onclick="switchGlobalCycle('Monthly')">
+                <input type="radio" name="billing-cycle" value="Monthly" checked onchange="switchGlobalCycle('Monthly')" />
                 <span>Monthly</span>
             </label>
             <span class="billing-switch-track" role="switch" tabindex="0" aria-label="Toggle billing cycle" onclick="switchGlobalCycle(globalCycle === 'Monthly' ? 'Yearly' : 'Monthly')" onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); this.click(); }"><span class="billing-switch-thumb"></span></span>
-            <label class="billing-option active" id="global-toggle-yearly" onclick="switchGlobalCycle('Yearly')">
-                <input type="radio" name="billing-cycle" value="Yearly" checked onchange="switchGlobalCycle('Yearly')" />
+            <label class="billing-option" id="global-toggle-yearly" onclick="switchGlobalCycle('Yearly')">
+                <input type="radio" name="billing-cycle" value="Yearly" onchange="switchGlobalCycle('Yearly')" />
                 <span>Yearly</span>
             </label>
         </div>
@@ -25,38 +25,47 @@
 
     <div class="plans-row">
         <div class="pricing-card pos-card">
-            <div class="card-badge-recommended">Most Recommended</div>
-            <h3 class="card-plan-title">POS (Point of Sale) Plan</h3>
-            <div class="internal-toggle-box">
-                <button type="button" class="btn-internal-toggle" id="pos-tier-lite" onclick="selectPosTier('Lite')">Lite Plan</button>
-                <button type="button" class="btn-internal-toggle active" id="pos-tier-premium" onclick="selectPosTier('Premium')">Premium Plan</button>
-            </div>
-            <p class="card-plan-desc" id="pos-desc">Everything a single-outlet restaurant needs to start billing today.</p>
-            <div class="price-display-area">
-                <span class="price-amount" id="pos-price-val">$25</span>
-                <span class="price-period" id="pos-period-val"> / Month billed annually</span>
+
+            <div class="card-top-section">
+                <h3 class="card-plan-title">POS (Point of Sale) Plan</h3>
+                <div class="internal-toggle-box">
+                    <button type="button" class="btn-internal-toggle" id="pos-tier-lite" onclick="selectPosTier('Lite')">Lite Plan</button>
+                    <button type="button" class="btn-internal-toggle active" id="pos-tier-premium" onclick="selectPosTier('Premium')" style="position: relative;">
+                        Premium Plan
+                        <div class="card-badge-recommended">Most Recommended</div>
+                    </button>
+                </div>
+                <p class="card-plan-desc" id="pos-desc">Everything a single-outlet restaurant needs to start billing today.</p>
+                <div class="price-display-area">
+                    <span class="price-amount" id="pos-price-val">$25</span>
+                    <span class="price-period" id="pos-period-val"> / Month billed annually</span>
+                </div>
             </div>
             <button type="button" class="btn-teal-cta" onclick="selectAndNavigatePlan('POS')">Start 14 Day Free Trial</button>
             <ul class="feature-checklist" id="pos-feature-list"></ul>
             <a href="#" class="btn-learn-more">Learn More</a>
         </div>
 
-        <div class="pricing-card growth-card">
+ <div class="pricing-card growth-card">
             <div class="growth-top-banner">
-                <span>Growth Plan</span>
-                <span>Save 52%</span>
+                <span style="font-weight: 800; font-size: 14px;">Growth Plan</span>
+                <span style="font-weight: 700; font-size: 12px;">Save 52%</span>
             </div>
             <div class="growth-card-inner">
-                <div class="price-display-area" id="growth-price-area">
-                    <div class="growth-price-row">
-                        <span class="price-struck">$1,899</span>
-                        <span class="growth-price">$600 <span class="price-period-dark">/ Year</span></span>
+                <div class="card-top-section growth-top-section">
+                    <div class="price-display-area" id="growth-price-area">
+                        <div class="growth-price-row">
+                            <span class="price-struck">$1,899</span>
+                            <span class="growth-price">$600</span> <span class="growth-price-period" style="color: #353535;">/ Year</span>
+                        </div>
+                    </div>
+                    <div class="growth-features-note">
+                        <p class="growth-subtitle">All Features in One Plan</p>
+                        <div class="growth-yearly-note">Growth Plan Available on Yearly Plan</div>
                     </div>
                 </div>
-                <p class="growth-subtitle">All Features in One Plan</p>
                 <div id="growth-cta-box">
                     <button type="button" class="btn-growth-disabled" disabled>Start 14 Day Free Trial</button>
-                    <div class="growth-yearly-note">Growth Plan Available on Yearly Plan</div>
                 </div>
                 <div class="bundled-values-wrapper">
                     <div class="bundle-row" data-feature="online ordering"><span>Online Ordering Plan</span><span class="badge-value">Value: $300</span></div>
@@ -78,32 +87,22 @@
         </div>
 
         <div class="pricing-card ordering-card">
-            <h3 class="card-plan-title">Online Ordering Plan</h3>
-            <div class="internal-toggle-box">
-                <button type="button" class="btn-internal-toggle active" id="ordering-tier-fix" onclick="selectOrderingTier('Fix')">Fix Plan</button>
-                <button type="button" class="btn-internal-toggle" id="ordering-tier-commission" onclick="selectOrderingTier('Commission')">Commission Plan</button>
-            </div>
-            <p class="card-plan-desc" id="ordering-desc">Predictable cost, unlimited orders.</p>
-            <div class="price-display-area">
-                <span class="price-amount" id="ordering-price-val">$30</span>
-                <span class="price-period" id="ordering-period-val"> / Month</span>
-                <div class="commission-note" id="ordering-commission-note" style="display:none;">1.8% Order Commission | $1 Platform Fee</div>
+            <div class="card-top-section">
+                <h3 class="card-plan-title">Online Ordering Plan</h3>
+                <div class="internal-toggle-box">
+                    <button type="button" class="btn-internal-toggle active" id="ordering-tier-fix" onclick="selectOrderingTier('Fix')">Fix Plan</button>
+                    <button type="button" class="btn-internal-toggle" id="ordering-tier-commission" onclick="selectOrderingTier('Commission')">Commission Plan</button>
+                </div>
+                <p class="card-plan-desc" id="ordering-desc">Predictable cost, unlimited orders.</p>
+                <div class="price-display-area">
+                    <span class="price-amount" id="ordering-price-val">$30</span>
+                    <span class="price-period" id="ordering-period-val"> / Month</span>
+                    <!-- <div class="commission-note" id="ordering-commission-note" style="display:none;">1.8% Order Commission | $1 Platform Fee</div> -->
+                </div>
             </div>
             <button type="button" class="btn-teal-cta" onclick="selectAndNavigatePlan('Ordering')">Start 14 Day Free Trial</button>
-            <ul class="feature-checklist">
-                <li><i class="fa-solid fa-circle-check check-icon"></i> Takeaway / Dine-in / Delivery Ordering</li>
-                <li><i class="fa-solid fa-circle-check check-icon"></i> Razorpay payment gateway</li>
-                <li><i class="fa-solid fa-circle-check check-icon"></i> Online Order Management</li>
-                <li><i class="fa-solid fa-circle-check check-icon"></i> $2000 Free Sales Credit</li>
-                <li><i class="fa-solid fa-circle-check check-icon"></i> Menu customization</li>
-                <li><i class="fa-solid fa-circle-check check-icon"></i> Tax Management</li>
-                <li><i class="fa-solid fa-circle-check check-icon"></i> Promo Code / Coupon</li>
-                <li><i class="fa-solid fa-circle-check check-icon"></i> Multiple Language</li>
-                <li><i class="fa-solid fa-circle-check check-icon"></i> Delivery Integration</li>
-                <li><i class="fa-solid fa-circle-check check-icon"></i> Custom Domain</li>
-                <li><i class="fa-solid fa-circle-check check-icon"></i> Google Analytics</li>
-                <li><i class="fa-solid fa-circle-check check-icon"></i> Coaching Session</li>
-                <li><i class="fa-solid fa-circle-check check-icon"></i> SEO Optimization</li>
+            <ul class="feature-checklist" id="ordering-feature-list">
+                <!-- Populated dynamically via JS -->
             </ul>
             <a href="#" class="btn-learn-more">Learn More</a>
         </div>

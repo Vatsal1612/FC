@@ -28,9 +28,14 @@
     background: #e5e7eb;
 }
 
-.btn-back-circle i { font-size: 13px; }
+.btn-back-circle i {
+    font-size: 13px;
+}
 
-.btn-back-circle:hover { background: #f3f4f6; color: #111; }
+.btn-back-circle:hover {
+    background: #f3f4f6;
+    color: #111;
+}
 
 .addons-toggle {
     margin: 0 !important;
@@ -88,7 +93,7 @@
 }
 
 .addon-tile-desc {
-    font-size: 12px;
+    font-size: 11px;
     color: #6b7280;
     line-height: 1.4;
     margin: 0 0 10px;
@@ -115,12 +120,15 @@
     color: var(--fc-teal);
     font-weight: 700;
     border-radius: 6px;
-    padding: 7px 10px;
+    padding: 4px 10px;
     font-size: 13px;
     margin-top: auto;
 }
 
-.btn-add-tile:hover { border-color: var(--fc-teal); color: var(--fc-teal); }
+.btn-add-tile:hover {
+    border-color: var(--fc-teal);
+    color: var(--fc-teal);
+}
 
 .btn-add-tile.added {
     background: #fff;
@@ -157,7 +165,10 @@
     line-height: 1;
 }
 
-.counter-button:hover { background: var(--fc-teal); color: #fff; }
+.counter-button:hover {
+    background: var(--fc-teal);
+    color: #fff;
+}
 
 .counter-value {
     min-width: 32px;
@@ -194,29 +205,43 @@
 
 .qty-stepper-box {
     display: inline-flex;
-    align-items: center;
+    align-items: stretch;
     border: 1px solid #d1d5db;
     border-radius: 6px;
     overflow: hidden;
     margin-top: auto;
+    margin-bottom: 4px;
     align-self: flex-start;
+    height: 28px;
 }
 
 .btn-stepper {
     border: none;
     background: #f3f4f6;
     width: 32px;
-    height: 32px;
+    height: 100%;
     font-weight: 800;
     color: #374151;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
 }
 
 .input-stepper-val {
     width: 36px;
-    height: 32px;
+    height: 100%;
     border: none;
     text-align: center;
     font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    line-height: 1;
 }
 
 .selection-summary-panel {
@@ -229,13 +254,16 @@
 }
 
 .selection-header {
-    font-weight: 800;
-    font-size: 15px;
-    padding: 14px 16px 10px;
+    font-weight: 500;
+    font-size: 14px;
+    padding: 14px 16px;
     color: #111827;
+    border-bottom: 1px solid #9ca3af;
 }
 
-.selection-body { padding: 0 16px 16px; }
+.selection-body {
+    padding: 0 16px 16px;
+}
 
 .selection-line-item {
     display: flex;
@@ -246,9 +274,21 @@
     font-size: 13px;
 }
 
-.selection-item-name { font-weight: 700; color: #111827; }
-.selection-item-sub { font-size: 11px; color: #9ca3af; margin-top: 2px; }
-.selection-item-price { font-weight: 700; white-space: nowrap; }
+.selection-item-name {
+    font-weight: 700;
+    color: #111827;
+}
+
+.selection-item-sub {
+    font-size: 11px;
+    color: #9ca3af;
+    margin-top: 2px;
+}
+
+.selection-item-price {
+    font-weight: 700;
+    white-space: nowrap;
+}
 
 .selection-total-value {
     color: #e53935;
@@ -257,7 +297,13 @@
     padding: 8px 0 4px;
 }
 
-.selection-totals-box { padding-top: 10px; }
+#selection-addons-list {
+    min-height: 150px;
+}
+
+.selection-totals-box {
+    padding-top: 24px;
+}
 
 .selection-due-row {
     display: flex;
@@ -277,14 +323,12 @@
     margin-bottom: 12px;
 }
 
-.selection-assurances-box { margin-bottom: 14px; }
+.selection-assurances-box {
+    margin-bottom: 14px;
+}
 
 .api-status {
-    display: block;
-    color: #0f9f98;
-    font-size: 10px;
-    font-weight: 700;
-    margin: 4px 0 8px;
+    display: none !important;
 }
 
 .assurance-line {
@@ -297,4 +341,7 @@
     line-height: 1.35;
 }
 
-.assurance-line i { color: #22c55e; margin-top: 2px; }
+.assurance-line i {
+    color: #22c55e;
+    margin-top: 2px;
+}

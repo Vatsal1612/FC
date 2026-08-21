@@ -4,7 +4,6 @@ var posTierSelected = sessionStorage.getItem('selected_pos_tier') || 'Lite';
 var orderingTierSelected = sessionStorage.getItem('selected_ordering_tier') || 'Fix';
 var isGrowth = false;
 var addedAddonsMap = {};
-var kdsQty = 0;
 var tileOrderingTier = 'Fix';
 var tilePosTier = 'Lite';
 var apiAddons = [];
@@ -22,7 +21,7 @@ function catalog() {
         { id: 'oo', name: 'Online Ordering Plan', growthName: 'Online Ordering Fix Plan', desc: 'Predictable cost, unlimited orders.', img: '/Content/images/addons/online_ordering.png', monthly: 30, yearlyMo: 25, yearly: 300, hero: 'oo', growth: 300 },
         { id: 'pos', name: 'POS (Point of Sale) Plan', growthName: 'POS Premium Plan', desc: 'Manage billing, inventory, and operations from one powerful POS', img: '/Content/images/addons/premium_pos_plan.png', monthlyLite: 10, monthlyPrem: 30, yearlyMoLite: 10, yearlyMoPrem: 25, yearly: 300, hero: 'pos', growth: 300 },
         { id: 'qr', name: 'Qr Digital Menu', desc: 'Contactless digital menu for tables & takeaway', img: '/Content/images/addons/qr_menu.png', monthly: 29, yearlyMo: 6.58, yearly: 79, growth: 79 },
-        { id: 'kds', name: 'KDS (Kitchen Display System)', desc: 'Kitchen Display System for smooth kitchen ops', img: '/Content/images/addons/kds.png', monthly: 20, yearlyMo: 12.5, yearly: 150, stepper: true, growth: 150 },
+        { id: 'kds', name: 'KDS (Kitchen Display System)', desc: 'Kitchen Display System for smooth kitchen ops', img: '/Content/images/addons/kds.png', monthly: 20, yearlyMo: 12.5, yearly: 150, growth: 150 },
         { id: 'table', name: 'Table Reservation', desc: 'Accept reservations and manage tables effortlessly.', img: '/Content/images/addons/table_reservation.png', monthly: 9, yearlyMo: 8.25, yearly: 99, growth: 99 },
         { id: 'happy', name: 'Happy Hour', desc: 'Boost sales with scheduled discounts and time-based offers.', img: '/Content/images/addons/happy_hour.png', monthly: 20.83, yearlyMo: 20.83, yearly: 250, yearlyOnly: true, growth: 250 },
         { id: 'bio', name: 'Bio Link', desc: 'Share all your restaurant links from one branded page.', img: '/Content/images/addons/bio_link.png', monthly: 4.08, yearlyMo: 4.08, yearly: 49, yearlyOnly: true, growth: 49 },
@@ -210,14 +209,6 @@ function renderAddonsGrid() {
         } else if (yearlyLocked) {
             actionHtml = '<button type="button" class="btn-add-tile" disabled>+ Add</button>' +
                 '<div class="disabled-yearly-note">This Add-Ons Available on Yearly Plan</div>';
-        } else if (addon.stepper && kdsQty === 0) {
-            actionHtml = '<button type="button" class="btn-add-tile" onclick="stepKdsQty(1)">+ Add</button>';
-        } else if (addon.stepper) {
-            actionHtml = '<div class="qty-stepper-box">' +
-                '<button type="button" class="btn-stepper" onclick="stepKdsQty(-1)">-</button>' +
-                '<input type="text" class="input-stepper-val" value="' + kdsQty + '" readonly />' +
-                '<button type="button" class="btn-stepper" onclick="stepKdsQty(1)">+</button>' +
-                '</div>';
         } else {
             actionHtml = addonQuantity === 0
                 ? '<button type="button" class="btn-add-tile" onclick="changeAddonQuantity(\'' + addon.id + '\', 1)">+ Add</button>'
@@ -285,20 +276,6 @@ function syncAddon(id) {
     var addon = catalog().find(function (a) { return a.id === id; });
     var quantity = addedAddonsMap[id] ? addedAddonsMap[id].quantity || 1 : 1;
     addedAddonsMap[id] = { name: addon.name, quantity: quantity, price: selectionAmount(addon) * quantity, label: selectionLabel(addon) + ' x' + quantity };
-}
-
-function stepKdsQty(delta) {
-    kdsQty += delta;
-    if (kdsQty < 0) kdsQty = 0;
-    if (kdsQty > 20) kdsQty = 20;
-    if (kdsQty > 0) {
-        var addon = catalog().find(function (a) { return a.id === 'kds'; });
-        addedAddonsMap.kds = { name: 'KDS (' + kdsQty + ' Terminal' + (kdsQty > 1 ? 's' : '') + ')', price: selectionAmount(addon), label: selectionLabel(addon) };
-    } else {
-        delete addedAddonsMap.kds;
-    }
-    renderAddonsGrid();
-    updateLiveSelectionPanel();
 }
 
 function toggleAddonItem(id) {

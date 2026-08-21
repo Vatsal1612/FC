@@ -1,4 +1,4 @@
-var globalCycle = 'Yearly';
+var globalCycle = 'Monthly';
 var posTier = 'Premium';
 var orderingTier = 'Fix';
 
@@ -57,8 +57,41 @@ var premiumFeatures = {
     ]
 };
 
+var orderingFixFeatures = [
+    "Takeaway / Dine-in / Delivery Ordering",
+    "Razorpay payment gateway",
+    "Online Order Management",
+    "$2000 Free Sales Credit",
+    "Menu customization",
+    "Tax Management",
+    "Promo Code / Coupon",
+    "Multiple Language",
+    "Delivery Integration",
+    "Custom Domain",
+    "Google Analytics",
+    "Coaching Session",
+    "SEO Optimization"
+];
+
+var orderingCommissionFeatures = [
+    "Take Away / Dine In / Delivery",
+    "Razorpay payment gateway",
+    "1.8 % Order Commission On Every Order",
+    "$1 Platform Fee to Customer",
+    "Online Order Management",
+    "$4000 Free Sales Credit",
+    "Menu customization",
+    "Tax Management",
+    "Promo Code / Coupon",
+    "Multiple Language",
+    "Own Driver/Porter Delivery Integration",
+    "Custom Domain",
+    "SEO Optimization"
+];
+
 $(document).ready(function () {
     renderPosFeatures();
+    renderOrderingFeatures();
     updateScreen1Prices();
     loadPlansFromApi();
 });
@@ -75,7 +108,11 @@ function loadPlansFromApi() {
             if (posPlan) {
             }
             if (growthPlan) {
-                $('.growth-price').text('$' + Number(growthPlan.price).toFixed(0) + ' / ' + growthPlan.billingCycle);
+                var priceText = '$' + Number(growthPlan.price).toFixed(0);
+                var displayCycle = growthPlan.billingCycle === 'Yearly' ? 'Year' : growthPlan.billingCycle;
+                var periodText = '/ ' + displayCycle;
+                $('#growth-price-area .growth-price').text(priceText);
+                $('#growth-price-area .growth-price-period').text(periodText);
             }
             if (orderingPlan) {
             }
@@ -134,12 +171,22 @@ function selectOrderingTier(tier) {
     $('#ordering-tier-fix, #ordering-tier-commission').removeClass('active');
     if (tier === 'Fix') {
         $('#ordering-tier-fix').addClass('active');
-        $('#ordering-desc').text('Predictable cost, unlimited orders.');
+        $('#ordering-desc').html('Predictable cost, unlimited orders.');
     } else {
         $('#ordering-tier-commission').addClass('active');
-        $('#ordering-desc').text('Pay as you grow with a small commission per order.');
+        $('#ordering-desc').html('Lifetime plan &bull; One-time payment');
     }
+    renderOrderingFeatures();
     updateScreen1Prices();
+}
+
+function renderOrderingFeatures() {
+    var data = orderingTier === 'Fix' ? orderingFixFeatures : orderingCommissionFeatures;
+    var html = '';
+    data.forEach(function (item) {
+        html += '<li><i class="check-icon"></i> ' + item + '</li>';
+    });
+    $('#ordering-feature-list').html(html);
 }
 
 function renderPosFeatures() {
@@ -148,7 +195,7 @@ function renderPosFeatures() {
     data.groups.forEach(function (g) {
         html += '<li class="group-label">' + g.title + '</li>';
         g.items.forEach(function (item) {
-            html += '<li><i class="fa-solid fa-circle-check check-icon"></i> ' + item + '</li>';
+            html += '<li><i class="check-icon"></i> ' + item + '</li>';
         });
     });
     $('#pos-feature-list').html(html);
@@ -174,17 +221,18 @@ function updateScreen1Prices() {
     }
 
     $('#growth-price-area').html(
-        '<div class="growth-price-row"><span class="price-struck">$1,899</span><span class="growth-price">$600 / Year</span></div>'
+        '<div class="growth-price-row"><span class="price-struck">$1,899</span><span class="growth-price">$600</span> <span class="growth-price-period" style="color: #353535;">/ Year</span></div>'
     );
     if (globalCycle === 'Monthly') {
         $('#growth-cta-box').html(
-            '<button type="button" class="btn-growth-disabled" disabled>Start 14 Day Free Trial</button>\n' +
-            '<div class="growth-yearly-note">Growth Plan Available on Yearly Plan</div>'
+            '<button type="button" class="btn-growth-disabled" disabled>Start 14 Day Free Trial</button>'
         );
+        $('.growth-yearly-note').css('visibility', 'visible');
     } else {
         $('#growth-cta-box').html(
             '<button type="button" class="btn-growth-gradient" onclick="selectAndNavigatePlan(\'Growth\')">Start 14 Day Free Trial</button>'
         );
+        $('.growth-yearly-note').css('visibility', 'hidden');
     }
 
     if (orderingTier === 'Fix') {
@@ -217,3 +265,4 @@ function selectAndNavigatePlan(planType) {
         window.location.href = '/Subscription/PosAddOns?planId=1';
     }
 }
+

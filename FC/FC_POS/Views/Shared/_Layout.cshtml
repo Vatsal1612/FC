@@ -48,7 +48,7 @@
         <div class="admin-sidebar-header">ADMIN</div>
         <div class="restaurant-selector">
             <div class="restaurant-icon">
-                <i class="fa-solid fa-shop"></i>
+                <img src="~/Content/images/maharaja_icon.png" alt="Maharaja Food" />
             </div>
             <span class="restaurant-name">Maharaja Food</span>
         </div>
@@ -282,6 +282,26 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/Scripts/api.js" asp-append-version="true"></script>
     <script src="~/Scripts/checkout.js" asp-append-version="true"></script>
+    <script>
+        function alignTrialButton() {
+            var supportBtn = document.querySelectorAll('.topbar-controls .btn-header-solid')[0];
+            var trialBtn = document.querySelector('.btn-start-trial');
+            var banner = document.getElementById('trial-banner');
+
+            if (supportBtn && trialBtn && banner) {
+                var supportRect = supportBtn.getBoundingClientRect();
+                var bannerRect = banner.getBoundingClientRect();
+                var leftPos = supportRect.left - bannerRect.left - (trialBtn.offsetWidth / 2);
+                trialBtn.style.position = 'absolute';
+                trialBtn.style.left = leftPos + 'px';
+                trialBtn.style.margin = '0';
+            }
+        }
+        window.addEventListener('resize', alignTrialButton);
+        document.addEventListener('DOMContentLoaded', alignTrialButton);
+        setTimeout(alignTrialButton, 100);
+        setTimeout(alignTrialButton, 500);
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
