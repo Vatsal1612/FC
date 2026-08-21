@@ -343,7 +343,7 @@ function renderGrowthCard() {
     // Total Value & Savings banner calculation
     var calculatedTotal = totalVal > 0 ? totalVal : struckPrice;
     var savingsAmount = calculatedTotal - priceVal;
-    $('#growth-total-value').text('TOTAL VALUE: $' + Number(calculatedTotal).toLocaleString());
+    $('#growth-total-value').html('<span>TOTAL VALUE:</span><span>$' + Number(calculatedTotal).toLocaleString() + '</span>');
     $('#growth-savings').html('<div class="savings-title">You save with Growth Plan</div><div class="savings-amount">$' + Number(savingsAmount).toLocaleString() + '</div>');
 }
 

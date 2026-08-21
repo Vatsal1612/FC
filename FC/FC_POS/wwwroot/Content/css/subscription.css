@@ -691,9 +691,9 @@ body.admin-app-body {
 }
 
 .price-struck {
-    color: #5C5C5C;
+    color: #717171;
     font-family: 'Unbounded', sans-serif;
-
+    font-style: semibold;
     font-size: 28px;
     font-weight: 800;
     line-height: 100%;
@@ -708,7 +708,7 @@ body.admin-app-body {
     top: 50%;
     width: 104%;
     height: 1.5px;
-    background-color: #5C5C5C;
+    background-color: #717171;
     transform: rotate(-6deg);
 }
 
@@ -827,34 +827,39 @@ body.admin-app-body {
 }
 
 .banner-guarantee {
-    background: #7cb342;
+    background: #00A50B;
     color: #fff;
-    text-align: center;
-    font-size: 12px;
-    font-weight: 700;
-    padding: 8px;
-    border-radius: 4px;
+    text-align: left;
+    font-family: 'Figtree', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 100%;
+    letter-spacing: 0;
+    padding: 8px 12px;
     margin-bottom: 6px;
 }
 
 .banner-total-value {
-    background: #e53935;
+    background: linear-gradient(to right, #990000, #CE0000, #990000);
     color: #fff;
-    text-align: center;
-    font-size: 12px;
-    font-weight: 800;
-    padding: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Figtree', sans-serif;
+    font-size: 20px;
+    font-weight: 900;
+    padding: 8px 12px;
     border-radius: 4px;
     margin-bottom: 6px;
 }
 
 .banner-savings {
-    background: #009E00;
+    background: #00A60B;
     color: #FFFFFF;
     text-align: center;
     padding: 12px 10px 14px;
     margin: 8px -18px -16px;
-    border-radius: 0 0 10px 10px;
+    border-radius: 0 0 3px 3px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -980,22 +985,30 @@ body.admin-app-body {
 .banner-guarantee {
     background: #00ad00;
     border-radius: 0;
-    font-size: 9px;
+    font-size: 14px;
     padding: 8px 5px;
     margin: 0 -8px 6px;
+    text-align: left;
+    font-family: 'Figtree', sans-serif;
+    font-weight: 600;
 }
 
 .banner-total-value {
-    background: #c90000;
+    background: linear-gradient(to right, #990000, #cc0000);
     border-radius: 5px;
-    font-size: 10px;
+    font-size: 14px;
     padding: 8px 9px;
     margin: 0 2px 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Figtree', sans-serif;
+    font-weight: 900;
 }
 
 .banner-savings {
     background: #009E00;
-    border-radius: 0 0 8px 8px;
+    border-radius: 0 0 3px 3px;
     padding: 10px 6px 12px;
     margin: 8px -8px -16px;
 }
