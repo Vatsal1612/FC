@@ -86,11 +86,11 @@
                 <div class="rzp-checkout">
                     <aside class="rzp-left">
                         <div class="rzp-merchant">
-                            <span class="rzp-merchant-logo">FC</span>
+                            <img src="https://www.foodchow.com/images/favicon.png" alt="FoodChow Logo" class="rzp-merchant-logo" />
                             <span class="rzp-merchant-name">FoodChow</span>
                         </div>
                         <div class="rzp-amount-card">
-                            <div class="rzp-amount" id="modal-summary-total">$138.00</div>
+                            <div class="rzp-amount" id="modal-summary-total">₹5,475</div>
                         </div>
                         <button type="button" class="rzp-left-row">
                             <span class="rzp-left-ico user"><i class="fa-regular fa-user"></i></span>
@@ -141,90 +141,97 @@
 
                     <section class="rzp-right">
                         <header class="rzp-right-head">
-                            <h5>Payment Options</h5>
-                            <div class="rzp-head-actions">
-                                <button type="button" class="rzp-icon-btn" aria-label="More">&#8942;</button>
+                            <h5 style="margin: 0 auto;">Payment Options</h5>
+                            <div class="rzp-head-actions" style="position: absolute; right: 18px;">
+                                <button type="button" class="rzp-icon-btn" aria-label="More">&#8230;</button>
                                 <button type="button" class="rzp-icon-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
                             </div>
                         </header>
 
-                        <div class="rzp-body">
-                            <div class="rzp-method-row">
-                                <button type="button" class="rzp-method">
-                                    <span class="rzp-logo gpay">G</span>
-                                    <span>GPay</span>
-                                </button>
-                                <button type="button" class="rzp-method">
-                                    <span class="rzp-logo phonepe">Pe</span>
-                                    <span>PhonePe</span>
-                                </button>
-                                <button type="button" class="rzp-method">
-                                    <span class="rzp-logo paytm">paytm</span>
-                                    <span>Paytm</span>
-                                </button>
-                                <button type="button" class="rzp-method">
-                                    <span class="rzp-logo upi">UPI</span>
-                                    <span>UPI</span>
-                                </button>
-                            </div>
-
-                            <div class="rzp-block">
-                                <div class="rzp-block-head">
-                                    <span>Available Offers</span>
-                                    <a href="#" class="rzp-view-all">View all</a>
-                                </div>
-                                <div class="rzp-offer">
-                                    <span class="rzp-offer-check">&#10003;</span>
-                                    <span>Unlimited 1% cashback with Amaz...</span>
-                                </div>
-                            </div>
-
-                            <div class="rzp-block">
-                                <div class="rzp-block-head">
-                                    <span>Cards</span>
-                                    <span class="rzp-offer-link">Unlimited 1% cash...</span>
-                                </div>
-                                <div class="rzp-chip-row">
-                                    <span class="rzp-chip visa">VISA</span>
-                                    <span class="rzp-chip mc">MC</span>
-                                    <span class="rzp-chip rupay">RuPay</span>
-                                    <span class="rzp-chip maestro">Maestro</span>
-                                </div>
-                                <div class="rzp-card-form">
-                                    <div class="rzp-form-title">Add a new card</div>
-                                    <input type="text" class="rzp-input" placeholder="Card Number" id="card-num" maxlength="19" />
-                                    <div class="rzp-input-split">
-                                        <input type="text" class="rzp-input" placeholder="MM / YY" id="card-exp" maxlength="7" />
-                                        <input type="password" class="rzp-input" placeholder="CVV" id="card-cvv" maxlength="4" />
+                        <div class="rzp-split-body">
+                            <!-- Sidebar -->
+                            <div class="rzp-sidebar">
+                                <div class="rzp-sidebar-item">
+                                    <div class="rzp-sb-main">
+                                        <div class="rzp-sb-text">UPI</div>
+                                        <div class="rzp-sb-icons">
+                                            <span class="rzp-logo-sm" style="color: #4285f4; font-weight:800; font-family:sans-serif;">G</span>
+                                            <span class="rzp-logo-sm" style="background:#5f259f; color:#fff; padding:1px 3px; border-radius:3px;">Pe</span>
+                                            <span class="rzp-logo-sm" style="color:#00baf2; font-weight:800; font-size:9px;">paytm</span>
+                                        </div>
                                     </div>
-                                    <label class="rzp-rbi">
-                                        <input type="checkbox" id="save-card-rbi" checked />
+                                    <div class="rzp-sb-pill green">2 Offers</div>
+                                </div>
+                                <div class="rzp-sidebar-item active">
+                                    <div class="rzp-sb-main">
+                                        <div class="rzp-sb-text">Cards</div>
+                                        <div class="rzp-sb-icons">
+                                            <span class="rzp-logo-sm" style="color:#1a1f71; font-weight:800; font-size:9px;">VISA</span>
+                                            <span class="rzp-logo-sm" style="color:#eb001b; font-weight:800; font-size:9px;">MC</span>
+                                        </div>
+                                    </div>
+                                    <div class="rzp-sb-pill light-green">Unlimited 1% cash...</div>
+                                </div>
+                                <div class="rzp-sidebar-item">
+                                    <div class="rzp-sb-main">
+                                        <div class="rzp-sb-text">Netbanking</div>
+                                        <div class="rzp-sb-icons">
+                                            <span class="rzp-logo-sm" style="color:#eb5202; font-weight:800; font-size:9px;">SBI</span>
+                                            <span class="rzp-logo-sm" style="color:#004c8f; font-weight:800; font-size:9px;">HDFC</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="rzp-sidebar-item">
+                                    <div class="rzp-sb-main">
+                                        <div class="rzp-sb-text">Wallet</div>
+                                        <div class="rzp-sb-icons">
+                                            <span class="rzp-logo-sm" style="color:#333; font-weight:800; font-size:9px;">Mobi</span>
+                                            <span class="rzp-logo-sm" style="color:#111; font-weight:800; font-size:9px;">Pay</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Main Content -->
+                            <div class="rzp-content">
+                                <div class="rzp-block" style="margin-top: 18px;">
+                                    <div class="rzp-block-head">
+                                        <span style="color: #6b7280; font-weight: 500;">Available Offers</span>
+                                    </div>
+                                    <div class="rzp-offer" style="border: 1px solid #ff7b5a; background: #fff5f2; justify-content: space-between; border-radius: 20px; padding: 6px 14px;">
+                                        <div style="display: flex; align-items: center; gap: 8px;">
+                                            <span style="color: #ea4335; font-weight: 900; font-style: italic; font-size: 16px;">f</span>
+                                            <span style="font-size: 12px; font-weight: 600;">Unlimited 1% cashback with Amaz...</span>
+                                            <span style="background: #22c55e; color: #fff; border-radius: 50%; width: 14px; height: 14px; display: flex; align-items: center; justify-content: center; font-size: 9px;">&#10003;</span>
+                                        </div>
+                                        <a href="#" class="rzp-view-all" style="background: #f4f8ff; padding: 4px 10px; border-radius: 14px; color: #1a73e8; text-decoration: none; font-size: 11px; font-weight: 700; display:flex; align-items:center; gap:4px;">
+                                            <span style="color:#ea4335;">&#x1F3F7;</span> View all
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="rzp-block">
+                                    <div class="rzp-block-head">
+                                        <span style="color: #6b7280; font-weight: 500;">Add a new card</span>
+                                    </div>
+                                    <div class="rzp-card-form" style="border: 1px solid #e5e7eb; border-radius: 8px; padding: 0;">
+                                        <input type="text" class="rzp-input" placeholder="Card Number" id="card-num" maxlength="19" style="border: none; border-bottom: 1px solid #e5e7eb; border-radius: 8px 8px 0 0; margin-bottom: 0; padding: 12px 14px;" />
+                                        <div class="rzp-input-split" style="gap: 0;">
+                                            <input type="text" class="rzp-input" placeholder="MM / YY" id="card-exp" maxlength="7" style="border: none; border-right: 1px solid #e5e7eb; border-radius: 0 0 0 8px; margin-bottom: 0; padding: 12px 14px;" />
+                                            <input type="password" class="rzp-input" placeholder="CVV" id="card-cvv" maxlength="4" style="border: none; border-radius: 0 0 8px 0; margin-bottom: 0; padding: 12px 14px;" />
+                                        </div>
+                                    </div>
+                                    <label class="rzp-rbi" style="margin-top: 14px;">
+                                        <input type="checkbox" id="save-card-rbi" />
                                         <span>Save this card as per RBI guidelines</span>
                                     </label>
                                 </div>
-                            </div>
 
-                            <div class="rzp-block">
-                                <div class="rzp-block-head"><span>Netbanking</span></div>
-                                <div class="rzp-chip-row">
-                                    <span class="rzp-chip bank sbi">SBI</span>
-                                    <span class="rzp-chip bank hdfc">HDFC</span>
-                                    <span class="rzp-chip bank icici">ICICI</span>
-                                    <span class="rzp-chip bank axis">AXIS</span>
-                                </div>
-                            </div>
-
-                            <div class="rzp-block">
-                                <div class="rzp-block-head"><span>Wallet</span></div>
-                                <div class="rzp-chip-row">
-                                    <span class="rzp-chip wallet">Mobikwik</span>
-                                    <span class="rzp-chip wallet">Amazon Pay</span>
-                                    <span class="rzp-chip wallet">Freecharge</span>
+                                <div style="margin-top: auto; padding-bottom: 24px;">
+                                    <button type="button" class="rzp-continue" id="btn-modal-continue" onclick="confirmModalPayment()" style="margin: 0; width: 100%; border-radius: 6px;">Continue</button>
                                 </div>
                             </div>
                         </div>
-
-                        <button type="button" class="rzp-continue" id="btn-modal-continue" onclick="confirmModalPayment()">Continue</button>
                     </section>
                 </div>
             </div>

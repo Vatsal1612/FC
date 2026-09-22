@@ -22,7 +22,7 @@ function catalog() {
         { id: 'kds', name: 'KDS (Kitchen Display System)', desc: 'Kitchen Display System for smooth kitchen ops', img: '/Content/images/addons/kds.jpg', monthly: 20, yearlyMo: 12.5, yearly: 150, stepper: true, growth: 150 },
         { id: 'table', name: 'Table Reservation', desc: 'Accept reservations and manage tables effortlessly.', img: '/Content/images/addons/table_reservation.jpg', monthly: 9, yearlyMo: 8.25, yearly: 99, growth: 99 },
         { id: 'happy', name: 'Happy Hour', desc: 'Boost sales with scheduled discounts and time-based offers.', img: '/Content/images/addons/happy_hour.jpg', monthly: 20.83, yearlyMo: 20.83, yearly: 250, yearlyOnly: true, growth: 250 },
-        { id: 'bio', name: 'Bio Link', desc: 'Share all your restaurant links from one branded page.', img: '/Content/images/addons/bio_link.jpg', monthly: 4.08, yearlyMo: 4.08, yearly: 49, yearlyOnly: true, growth: 49 },
+        { id: 'bio', name: 'Bio Link', desc: 'Share all your restaurant links from one branded page.', img: '/Content/images/addons/bio_link.jpg?v=2', monthly: 4.08, yearlyMo: 4.08, yearly: 49, yearlyOnly: true, growth: 49 },
         { id: 'menu', name: 'Additional Menu', desc: 'Create and manage multiple menus for every occasion.', img: '/Content/images/addons/additional_menu.jpg', monthly: 8.33, yearlyMo: 8.33, yearly: 100, yearlyOnly: true, growth: 100 },
         { id: 'snap', name: 'SnapDish', desc: 'Turn food photos into stunning, menu-ready images instantly.', img: '/Content/images/addons/snapdish.jpg', monthly: 8.33, yearlyMo: 8.33, yearly: 100, yearlyOnly: true, growth: 100 }
     ];
